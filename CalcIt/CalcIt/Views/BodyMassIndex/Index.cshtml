@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+@model BodyMassIndexModel
+
+    <form action="BodyMassIndexController" method="post">
+        <h8>Masa ciała:</h8>
+        <br>
+        <input type="text" name="weight">
+        <br>
+        <h8>Wzrost w metrach:</h8>
+        <br>
+        <input type="text" name="height" />
+        <br>
+        <br>
+        <button asp-controller="BodyMassIndex" asp-action="CalculateBMI">Zatwierdź</button>
+        <br>
+        <br>
+        <output>BMI: </output>
+        @ViewData["BMI"]
+    </form>
