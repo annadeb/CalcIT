@@ -1,0 +1,45 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Index";
+}
+<center class="alert alert-info" role="alert">
+    <center>
+        @ViewData["Patient"]
+    </center>
+</center>
+<center><b>Ostatnie obliczenia</b></center>
+<table class="table table-hover">
+    <thead>
+        <tr >
+            <th scope="col">Typ badania</th>
+            <th scope="col">Wynik</th>
+            <th scope="col">Data</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr style="background-color:green">
+            <td>BMI</td>
+            <td>21</td>
+            <td>21.01.2020</td>
+        </tr>
+        <tr>
+            <td>BSA</td>
+            <td>1.535</td>
+            <td>20.01.2020</td>
+        </tr>
+        <tr  style="background-color:red">
+            <td>DAS</td>
+            <td>3.73</td>
+            <td>19.01.2020</td>
+        </tr>
+    </tbody>
+</table>
+<center><b>Dodaj nowe obliczenia</b></center>
+<br />
+<center>
+<button type="button" class="btn btn-info">BMI</button>
+<button type="button" class="btn btn-info">BSA</button>
+<button type="button" class="btn btn-info">DAS</button>
+    </center>
