@@ -3,20 +3,26 @@
 }
 
 @model BodyMassIndexModel
-
-    <form action="BodyMassIndexController" method="post">
-        <h8>Masa ciała:</h8>
-        <br>
-        <input type="text" name="weight">
-        <br>
-        <h8>Wzrost w metrach:</h8>
-        <br>
-        <input type="text" name="height" />
-        <br>
-        <br>
-        <button asp-controller="BodyMassIndex" asp-action="CalculateBMI">Zatwierdź</button>
-        <br>
-        <br>
-        <output>BMI: </output>
-        @ViewData["BMI"]
-    </form>
+    <center><h3><b>Obliczanie BMI (Body Mass Index)</b></h3></center>
+    <br>
+    <br>
+    <center>
+        <form class="align-content-center" action="BodyMassIndexController" method="post">
+            <h8><b>Masa ciała:</b></h8>
+            <br>
+            <input type="text" name="weight">
+            <br>
+            <br>
+            <h8><b>Wzrost w metrach:</b></h8>
+            <br>
+            <input type="text" name="height" />
+            <br>
+            <br>
+            <button class="btn btn-info" asp-controller="BodyMassIndex" asp-action="CalculateBMI">Zatwierdź</button>
+            <br>
+            <br>
+            <output><b>BMI: </b></output>
+            <br>
+            <b>@ViewData["BMI"]</b>
+        </form>
+    </center>
