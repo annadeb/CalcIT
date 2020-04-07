@@ -8,6 +8,6 @@ namespace CalcIt.Models
     public class Department
     {
         public int DepartmentID;
-        public string Name { get; set; }
+        public string Name {get;set;}
     }
 }

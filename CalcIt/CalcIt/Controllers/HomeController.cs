@@ -32,6 +32,11 @@ namespace CalcIt.Controllers
             return View("Login");
         }
 
+        public ActionResult Login()
+        {
+            return View("Login");
+        }
+
         [HttpGet]
         public IActionResult Login(User user)
         {
@@ -39,7 +44,7 @@ namespace CalcIt.Controllers
             {
                 if (user.Email == "login@ip.pl" && user.Password == "haselko")
                 {
-                    return RedirectToAction("DepartmentView");
+                  return  RedirectToAction("DepartmentView");
                 }
 
 
