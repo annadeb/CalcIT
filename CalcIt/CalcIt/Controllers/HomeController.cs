@@ -32,11 +32,6 @@ namespace CalcIt.Controllers
             return View("Login");
         }
 
-        public ActionResult Login()
-        {
-            return View("Login");
-        }
-
         [HttpGet]
         public IActionResult Login(User user)
         {
