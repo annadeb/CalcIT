@@ -6,20 +6,36 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CalcIt.Models;
+using CalcIt.Data;
 
 namespace CalcIt.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        //private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+        //public HomeController(ILogger<HomeController> logger)
+        //{
+        //    _logger = logger;
+        //}
+
+        private readonly UserContext _context;
+
+        public HomeController(UserContext context)
         {
-            _logger = logger;
+            _context = context;
         }
-
         public IActionResult Index()
         {
+            //using (_context)
+            //{
+            //    var dep = new DepartmentModel()
+            //    {
+            //        department_id = 1,
+            //        name = "chirurgia"
+            //    };
+            //_context.Add(dep);
+            //}
             return View();
         }
 
@@ -29,6 +45,8 @@ namespace CalcIt.Controllers
         }
         public ActionResult Login()
         {
+
+       
             return View("Login");
         }
 

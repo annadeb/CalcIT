@@ -28,6 +28,7 @@ namespace CalcIt.Controllers
             bmi.Height = double.Parse(height);
             bmi.BMI = bmi.Weight / (bmi.Height * bmi.Height);
             ViewData["BMI"] = bmi.BMI; 
+            //LogModel Log1 =  
             return View("Index");
         }
     }
