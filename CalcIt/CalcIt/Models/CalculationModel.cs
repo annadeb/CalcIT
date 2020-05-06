@@ -21,6 +21,8 @@ namespace CalcIt.Models
         public DateTime calculation_date { get; set; }
         [StringLength(255)]
         public string calculation_data { get; set; }
+        [StringLength(50)]
+        public string calculation_type { get; set; }
         [StringLength(255)]
         public string result { get; set; }
     }
