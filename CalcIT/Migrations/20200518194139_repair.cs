@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CalcIT.Migrations
 {
-    public partial class Intial : Migration
+    public partial class repair : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -68,7 +68,7 @@ namespace CalcIT.Migrations
                 columns: table => new
                 {
                     patient_id = table.Column<long>(type: "bigint", nullable: false),
-                    departament_id = table.Column<long>(type: "bigint", nullable: false),
+                    department_id = table.Column<long>(type: "bigint", nullable: false),
                     PESEL = table.Column<long>(type: "bigint", nullable: false),
                     name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),

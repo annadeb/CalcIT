@@ -12,9 +12,9 @@ namespace CalcIt.Models
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         [Key]
         public Int64 patient_id { get; set; }
-        [ForeignKey("departament_id")]
+        [ForeignKey("department_id")]
         [Required]
-        public Int64 departament_id { get; set; }
+        public Int64 department_id { get; set; }
         [Required]
         public Int64 PESEL { get; set; }
         [StringLength(50)]

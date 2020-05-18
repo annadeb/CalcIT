@@ -112,7 +112,7 @@ namespace CalcIT.Migrations
                     b.Property<DateTime>("birthdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("departament_id")
+                    b.Property<long>("department_id")
                         .HasColumnType("bigint");
 
                     b.Property<double>("height")

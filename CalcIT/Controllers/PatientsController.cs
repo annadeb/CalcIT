@@ -15,18 +15,24 @@ namespace CalcIT.Controllers
     public class PatientsController : ControllerBase
     {
         // GET: api/Patients
+        private readonly UserContext _context;
+        public PatientsController(UserContext context)
+        {
+            _context = context;
+        }
         [HttpGet]
         public IEnumerable<Patient> Get()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<UserContext>();
-            optionsBuilder.UseSqlServer("Data Source=CalcIt.db");
+            //var optionsBuilder = new DbContextOptionsBuilder<UserContext>();
+            //optionsBuilder.UseSqlServer("Data Source=CalcIt.db");
+          
 
-            using (var ctx = new UserContext(optionsBuilder.Options))
+            using (_context)
             {
-                var pat = new Patient() { name = "Janek", surname="Kowalski", PESEL=97072058336, departament_id=1, birthdate=DateTime.Parse("20.07.1997"), height=178, registration_date=DateTime.Now, weight=78.5};
+                var pat = new Patient() { name = "Janek", surname="Kowalski", PESEL=97072058336, department_id=1, birthdate=DateTime.Parse("20.07.1997"), height=178, registration_date=DateTime.Now, weight=78.5};
 
-                ctx.Patients.Add(pat);
-                ctx.SaveChanges();
+                _context.Patients.Add(pat);
+                _context.SaveChanges();
             }
 
             List<Patient> patients = new List<Patient>{

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalcIT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20200517210652_Initial")]
-    partial class Initial
+    [Migration("20200518194139_repair")]
+    partial class repair
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -114,7 +114,7 @@ namespace CalcIT.Migrations
                     b.Property<DateTime>("birthdate")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("departament_id")
+                    b.Property<long>("department_id")
                         .HasColumnType("bigint");
 
                     b.Property<double>("height")
