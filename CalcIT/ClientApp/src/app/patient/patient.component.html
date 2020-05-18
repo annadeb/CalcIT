@@ -1,0 +1,15 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Nazwa</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let patient of Patients; let i=index">
+      <td>{{patient.name}}</td>
+      <td>{{patient.surname}}</td>
+     
+    </tr>
+  </tbody>
+</table>
