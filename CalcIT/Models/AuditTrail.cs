@@ -9,7 +9,7 @@ namespace CalcIt.Models
 {
     public class AuditTrail
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 at_id { get; set; }
         [ForeignKey("doctor_id")]

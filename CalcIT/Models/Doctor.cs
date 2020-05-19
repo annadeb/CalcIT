@@ -9,7 +9,7 @@ namespace CalcIt.Models
 {
     public class Doctor
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 doctor_id { get; set; }
         public string Email { get; set; }

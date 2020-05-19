@@ -9,7 +9,7 @@ namespace CalcIt.Models
 {
     public class Department
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 department_id { get; set; }
         [StringLength(50)]

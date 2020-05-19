@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalcIT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20200518194139_repair")]
-    partial class repair
+    [Migration("20200519124715_ID")]
+    partial class ID
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -24,7 +24,9 @@ namespace CalcIT.Migrations
             modelBuilder.Entity("CalcIt.Models.AuditTrail", b =>
                 {
                     b.Property<long>("at_id")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<DateTime>("date_time")
                         .HasColumnType("datetime2");
@@ -45,7 +47,9 @@ namespace CalcIT.Migrations
             modelBuilder.Entity("CalcIt.Models.Calculation", b =>
                 {
                     b.Property<long>("calculation_id")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("calculation_data")
                         .HasColumnType("nvarchar(255)")
@@ -76,7 +80,9 @@ namespace CalcIT.Migrations
             modelBuilder.Entity("CalcIt.Models.Department", b =>
                 {
                     b.Property<long>("department_id")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("name")
                         .HasColumnType("nvarchar(50)")
@@ -90,7 +96,9 @@ namespace CalcIT.Migrations
             modelBuilder.Entity("CalcIt.Models.Doctor", b =>
                 {
                     b.Property<long>("doctor_id")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
@@ -106,7 +114,9 @@ namespace CalcIT.Migrations
             modelBuilder.Entity("CalcIt.Models.Patient", b =>
                 {
                     b.Property<long>("patient_id")
-                        .HasColumnType("bigint");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<long>("PESEL")
                         .HasColumnType("bigint");

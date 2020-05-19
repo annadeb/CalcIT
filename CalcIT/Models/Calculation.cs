@@ -9,7 +9,7 @@ namespace CalcIt.Models
 {
     public class Calculation
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 calculation_id { get; set; }
         [ForeignKey("patient_id")]
