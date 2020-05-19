@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CalcIT.Migrations
 {
-    public partial class repair : Migration
+    public partial class ID : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -11,7 +11,8 @@ namespace CalcIT.Migrations
                 name: "AuditTrails",
                 columns: table => new
                 {
-                    at_id = table.Column<long>(type: "bigint", nullable: false),
+                    at_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     doctor_id = table.Column<long>(type: "bigint", nullable: false),
                     date_time = table.Column<DateTime>(type: "datetime2", nullable: false),
                     events = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false)
@@ -25,7 +26,8 @@ namespace CalcIT.Migrations
                 name: "Calculations",
                 columns: table => new
                 {
-                    calculation_id = table.Column<long>(type: "bigint", nullable: false),
+                    calculation_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     patient_id = table.Column<long>(type: "bigint", nullable: false),
                     doctor_id = table.Column<long>(type: "bigint", nullable: false),
                     calculation_date = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -42,7 +44,8 @@ namespace CalcIT.Migrations
                 name: "Departmens",
                 columns: table => new
                 {
-                    department_id = table.Column<long>(type: "bigint", nullable: false),
+                    department_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
                 },
                 constraints: table =>
@@ -54,7 +57,8 @@ namespace CalcIT.Migrations
                 name: "Doctors",
                 columns: table => new
                 {
-                    doctor_id = table.Column<long>(type: "bigint", nullable: false),
+                    doctor_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
@@ -67,7 +71,8 @@ namespace CalcIT.Migrations
                 name: "Patients",
                 columns: table => new
                 {
-                    patient_id = table.Column<long>(type: "bigint", nullable: false),
+                    patient_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     department_id = table.Column<long>(type: "bigint", nullable: false),
                     PESEL = table.Column<long>(type: "bigint", nullable: false),
                     name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
