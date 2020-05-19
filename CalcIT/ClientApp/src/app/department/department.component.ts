@@ -14,6 +14,6 @@ export class DepartmentsComponent {
   }
 }
 interface Department {
-  DepartmentID: number;
+  department_id: number;
   Name: string;
 }

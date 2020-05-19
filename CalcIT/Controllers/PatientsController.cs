@@ -27,27 +27,32 @@ namespace CalcIT.Controllers
             //optionsBuilder.UseSqlServer("Data Source=CalcIt.db");
           
 
-            using (_context)
-            {
-                var pat = new Patient() { name = "Janek", surname="Kowalski", PESEL=97072058336, department_id=1, birthdate=DateTime.Parse("20.07.1997"), height=178, registration_date=DateTime.Now, weight=78.5};
+            //using (_context)
+            //{
+            //    var pat = new Patient() { name = "Janek", surname="Kowalski", PESEL=97072058336, department_id=1, birthdate=DateTime.Parse("20.07.1997"), height=178, registration_date=DateTime.Now, weight=78.5};
 
-                _context.Patients.Add(pat);
-                _context.SaveChanges();
-            }
+            //    _context.Patients.Add(pat);
+            //    _context.SaveChanges();
+            //}
 
             List<Patient> patients = new List<Patient>{
-            new Patient(){patient_id=1, PESEL=123213123, name="Jan", surname="Kowalski" },
-            new Patient(){patient_id=2, PESEL=432432432, name="Adam", surname="Mickiewicz" },
-            new Patient(){patient_id=3, PESEL=324324433, name="Juliusz", surname="Słowacki" }
+            new Patient(){patient_id=1, department_id=1, PESEL=123213123, name="Jan", surname="Kowalski" },
+            new Patient(){patient_id=2, department_id=2, PESEL=432432432, name="Adam", surname="Mickiewicz" },
+            new Patient(){patient_id=3, department_id=3, PESEL=324324433, name="Juliusz", surname="Słowacki" }
            };
             return patients;
         }
 
         // GET: api/Patients/5
         [HttpGet("{id}", Name = "Get_Patients")]
-        public string Get(int id)
+        public IEnumerable<Patient> Get(int id)
         {
-            return "value";
+            List<Patient> patients = new List<Patient>{
+            new Patient(){patient_id=1, department_id=1, PESEL=123213123, name="Jan", surname="Kowalski" },
+            new Patient(){patient_id=2, department_id=2, PESEL=432432432, name="Adam", surname="Mickiewicz" },
+            new Patient(){patient_id=3, department_id=3, PESEL=324324433, name="Juliusz", surname="Słowacki" }
+           };
+            return patients.Where(pat=>pat.department_id==id);
         }
 
         // POST: api/Patients

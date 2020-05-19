@@ -10,7 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { CounterComponent } from './counter/counter.component';
 import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { DepartmentsComponent } from './department/department.component';
-import { PatientsComponent } from './patient/patient.component';
+import { PatientsComponent } from './patients/patients.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +31,7 @@ import { PatientsComponent } from './patient/patient.component';
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'department', component: DepartmentsComponent },
-      { path: 'patients', component: PatientsComponent },
+      { path: 'patients/:department_id', component: PatientsComponent },
 
     ])
   ],
