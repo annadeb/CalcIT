@@ -27,13 +27,17 @@
 
   <ItemGroup>
     <!-- Don't publish the SPA source files, but do show them in the project files list -->
-    <Compile Remove="ClientApp\src\app\NewFolder1\**" />
+    <Compile Remove="ClientApp\**" />
     <Content Remove="$(SpaRoot)**" />
-    <Content Remove="ClientApp\src\app\NewFolder1\**" />
-    <EmbeddedResource Remove="ClientApp\src\app\NewFolder1\**" />
+    <Content Remove="ClientApp\**" />
+    <EmbeddedResource Remove="ClientApp\**" />
     <None Remove="$(SpaRoot)**" />
-    <None Remove="ClientApp\src\app\NewFolder1\**" />
+    <None Remove="ClientApp\**" />
     <None Include="$(SpaRoot)**" Exclude="$(SpaRoot)node_modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\src\app\patient\patient.component.ts" />
   </ItemGroup>
 
   <Target Name="DebugEnsureNodeEnv" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('$(SpaRoot)node_modules') ">

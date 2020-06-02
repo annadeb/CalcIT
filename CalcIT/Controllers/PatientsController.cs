@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CalcIT.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class PatientsController : ControllerBase
     {
@@ -55,8 +55,8 @@ namespace CalcIT.Controllers
         //    };
         //}
         // GET: api/Patients/5
-        [HttpGet("{id}", Name = "Get_Patients")]
-        public IEnumerable<Patient> Get(int id)
+        [HttpGet("{id}")]
+        public IEnumerable<Patient> GetPatients(int id)
         {
             using (_context)
             {
