@@ -13,7 +13,7 @@ export class PatientsComponent {
     route: any;
   
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute) {
-    http.get<Patient[]>(baseUrl + 'api/Patients/' + route.snapshot.params['department_id']).subscribe(result => {
+    http.get<Patient[]>(baseUrl + 'api/Patients/Get_Patients' + route.snapshot.params['department_id']).subscribe(result => {
       this.Patients = result;
       console.log(baseUrl)
     }, error => console.error(route.snapshot.params['department_id']));

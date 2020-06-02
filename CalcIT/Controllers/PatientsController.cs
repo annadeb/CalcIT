@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace CalcIT.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class PatientsController : ControllerBase
     {
@@ -55,9 +55,8 @@ namespace CalcIT.Controllers
         //    };
         //}
         // GET: api/Patients/5
-        [HttpGet("{id}", Name = "Get_Patients")]
-        public IEnumerable<Patient> Get(int id)
-        {
+        [HttpGet]
+        public IEnumerable<Patient> Get_Patients(int id) { 
             using (_context)
             {
                 //var pat = new List<Patient>()
@@ -78,16 +77,32 @@ namespace CalcIT.Controllers
                 //_context.Patients.AddRange(pat);
                 //_context.SaveChanges();
 
-                //    _context.Patients.Add(pat);
-                //    _context.SaveChanges(); 
-                //}
+               
+           
                 var patients = _context.Patients.Where(x => x.department_id == id).ToList();
-                
+
                 return patients;
             };
             
         }
+        [HttpGet]
+        public async Task<ActionResult<Patient>> Get_PatientInfo(int id)
+        {
+            var patient = await _context.Patients
+             .FirstOrDefaultAsync(m => m.patient_id == id);
+            if (patient == null)
+            {
+                return NotFound();
+            }
 
+            return patient;
+        }
+        [HttpGet]
+        public IEnumerable<Calculation> Get_PatientResults(int id)
+        {
+            var result = _context.Calculations.Where(x => x.patient_id == id).ToList();
+            return result;
+        }
         // POST: api/Patients
         [HttpPost]
         public void Post([FromBody] string value)
