@@ -86,7 +86,7 @@ namespace CalcIT.Controllers
             };
             
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> Get_PatientInfo(int id)
         {
             var patient = await _context.Patients
@@ -98,9 +98,19 @@ namespace CalcIT.Controllers
 
             return patient;
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public IEnumerable<Calculation> Get_PatientResults(int id)
         {
+            //var calc = new List<Calculation>()
+            //{
+            // new Calculation {calculation_date=DateTime.Parse("2019-08-07"),calculation_type="BMI",calculation_data="weight=56;height=1.66",patient_id=1,doctor_id=1,result="BMI=21.6" },
+            // new Calculation {calculation_date=DateTime.Today,calculation_type="BMI",calculation_data="weight=46;height=1.66",patient_id=1,doctor_id=1,result="18.6" },
+            // new Calculation {calculation_date=DateTime.Today,calculation_type="Kalkulator ciąży",calculation_data="date=20-05-2020;lenght=28",patient_id=1,doctor_id=1,result="date=02-02-2021" }
+            //};
+            //_context.Calculations.AddRange(calc);
+            //_context.SaveChanges();
+
+
             var result = _context.Calculations.Where(x => x.patient_id == id).ToList();
             return result;
         }

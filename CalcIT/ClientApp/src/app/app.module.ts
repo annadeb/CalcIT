@@ -12,6 +12,7 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { DepartmentsComponent } from './department/department.component';
 import { PatientsComponent } from './patients/patients.component';
 import { PatientComponent } from './patient/patient.component';
+import { ResultsComponent } from './results/results.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PatientComponent } from './patient/patient.component';
     DepartmentsComponent,
     PatientsComponent,
    PatientComponent,
+   ResultsComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
