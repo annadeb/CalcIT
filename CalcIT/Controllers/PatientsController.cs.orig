@@ -55,9 +55,14 @@ namespace CalcIT.Controllers
         //    };
         //}
         // GET: api/Patients/5
+<<<<<<< HEAD
+        [HttpGet]
+        public IEnumerable<Patient> Get_Patients(int id) { 
+=======
         [HttpGet("{id}")]
         public IEnumerable<Patient> GetPatients(int id)
         {
+>>>>>>> Rozdzielenie_aplikacji
             using (_context)
             {
                 //var pat = new List<Patient>()
