@@ -7,7 +7,6 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './patients.component.html',
 })
 export class PatientsComponent {
-
   Patients: Patient[] = [];
   patient;
     route: any;
