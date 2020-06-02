@@ -10,7 +10,7 @@
     
     <tr *ngFor="let patient of Patients; let i=index">
       <td>{{patient.name}}</td>
-      <td>{{patient.surname}}</td>
+      <td>{{patient.surname}} {{patient.patient_id}}</td>
       <td><a class="nav-link text-dark" [routerLink]="['/patient', patient.patient_id]">
   <input type="submit" value="Wybierz" class="btn btn-outline-primary" />
 </a><td>

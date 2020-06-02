@@ -86,7 +86,7 @@ namespace CalcIT.Controllers
             };
             
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> Get_PatientInfo(int id)
         {
             var patient = await _context.Patients
@@ -98,7 +98,7 @@ namespace CalcIT.Controllers
 
             return patient;
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public IEnumerable<Calculation> Get_PatientResults(int id)
         {
             var result = _context.Calculations.Where(x => x.patient_id == id).ToList();
