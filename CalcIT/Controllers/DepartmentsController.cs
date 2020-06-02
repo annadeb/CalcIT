@@ -1,37 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using CalcIt.Models;
-
+using CalcIT.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CalcIT.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/action")]
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
-        // GET: api/Departments
-        [HttpGet]
+        private readonly UserContext _context;
+        public DepartmentsController(UserContext context)
+        {
+            _context = context;
+        }
+        //GET: api/Departments
+       [HttpGet]
 
         public IEnumerable<Department> Get()
         {
-            List<Department> departments = new List<Department>{
-            new Department(){department_id=1, name="Chirurgia" },
-            new Department(){department_id=2, name="Zakaźny" },
-            new Department(){department_id=3, name="Pulmonologia" },
-           };
-            return departments;
+            return _context.Departmens.ToList();
         }
-
         // GET: api/Departments/5
-        [HttpGet("{id}", Name = "Get_Departments")]
-        public string Get(int id)
-        {
-            return "value";
-        }
+        //[HttpGet(Name = "Get_Departments")]
+        //public async Task<ActionResult<IEnumerable<Department>>> Get()
+        //{
+        //    //using (_context)
+        //    //{
+        //    //    var dep = new List<Department>()
+        //    //    {
+        //    //             new Department {name = "Chirurgia"},
+        //    //             new Department {name = "Pulmonologia"},
+        //    //             new Department { name = "Ortopedia" },
+        //    //             new Department { name = "SOR" },
+        //    //             new Department { name = "Kardiologia" },
+        //    //    };
+        //    //   await _context.Departmens.AddRangeAsync(dep);
+        //    //   await _context.SaveChangesAsync();
+        //    //}
+        //   var deps= await _context.Departmens.ToListAsync();
+        //    return deps;
+        //}
 
         // POST: api/Departments
         [HttpPost]
