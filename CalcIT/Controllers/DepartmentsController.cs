@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CalcIT.Controllers
 {
-    [Route("api/[controller]/action")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class DepartmentsController : ControllerBase
     {
@@ -23,7 +23,20 @@ namespace CalcIT.Controllers
        [HttpGet]
 
         public IEnumerable<Department> Get()
-        {
+        {   
+           //using (_context)
+           // {
+           //     var dep = new List<Department>()
+           //     {
+           //              new Department {name = "Chirurgia"},
+           //              new Department {name = "Pulmonologia"},
+           //              new Department { name = "Ortopedia" },
+           //              new Department { name = "SOR" },
+           //              new Department { name = "Kardiologia" },
+           //     };
+           //     _context.Departmens.AddRange(dep);
+           //     _context.SaveChanges();
+           // }
             return _context.Departmens.ToList();
         }
         // GET: api/Departments/5

@@ -8,7 +8,7 @@ import { HttpClient} from '@angular/common/http'
 export class DepartmentsComponent {
   Departments: Department[] = [];
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string) {
-    http.get<Department[]>('api/departments').subscribe(result => {
+    http.get<Department[]>('api/departments/get').subscribe(result => {
       this.Departments = result;
     }, error => console.error(error));
   }

@@ -78,8 +78,8 @@ namespace CalcIT.Controllers
                 //_context.Patients.AddRange(pat);
                 //_context.SaveChanges();
 
-               
-           
+
+
                 var patients = _context.Patients.Where(x => x.department_id == id).ToList();
 
                 return patients;
