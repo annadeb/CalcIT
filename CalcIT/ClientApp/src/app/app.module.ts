@@ -37,6 +37,7 @@ import { ResultsComponent } from './results/results.component';
       { path: 'department', component: DepartmentsComponent },
       { path: 'patients/:department_id', component: PatientsComponent },
      { path: 'patient/:patient_id', component: PatientComponent },
+     { path: 'results/:patient_id', component: ResultsComponent },
 
     ])
   ],

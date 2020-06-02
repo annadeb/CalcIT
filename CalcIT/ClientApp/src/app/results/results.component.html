@@ -11,10 +11,10 @@
     <tbody>
 
             <tr *ngFor="let result of Results; let i=index">
-                    <td>{{calulation.calculation_date}}</td>
-                    <td>{{calulation.calculation_type}}</td>
-                    <td>{{calulation.result}}</td>
-                    <td>{{calulation.Data}}</td>
+                    <td>{{result.calculation_date}}</td>
+                    <td>{{result.calculation_type}}</td>
+                    <td>{{result.result}}</td>
+                    <td>{{result.calculation_data}}</td>
                     <!-- <td><a class="nav-link text-dark" [routerLink]="['/patient', patient.patient_id]"> -->
 
         <!-- <tr style="background-color:green">
@@ -37,7 +37,7 @@
 <div style="text-align:center"><b>Dodaj nowe obliczenia</b></div>
 <br />
 <div style="text-align:center">
-<button type="button" class="btn btn-info">BMI</button>
-<button type="button" class="btn btn-info">BSA</button>
-<button type="button" class="btn btn-info">DAS</button>
+<button style="margin: 10px;" type="button" class="btn btn-info">BMI</button>
+<button style="margin: 10px;" type="button" class="btn btn-info">BSA</button>
+<button style="margin: 10px;" type="button" class="btn btn-info">DAS</button>
 </div>

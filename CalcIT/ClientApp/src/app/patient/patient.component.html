@@ -2,5 +2,5 @@
         <div>  Pesel: {{Patients.pesel}} </div>  
 
         <div> Waga: {{Patients.weight}} </div> 
-
-<input type="submit" value="Badania" class="btn btn-outline-primary" />
+        <a class="nav-link text-dark" [routerLink]="['/results/', Patients.patient_id]">
+<input type="submit" value="Badania" class="btn btn-outline-primary" /></a>
