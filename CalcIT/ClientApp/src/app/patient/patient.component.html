@@ -1,6 +1,14 @@
+
+
+ <div class="card card-login mx-auto mt-5" style="width: 75vw;">
+  <div class="card-body"> 
 <h1>{{Patients.name}} {{Patients.surname}}</h1>
         <div>  Pesel: {{Patients.pesel}} </div>  
 
         <div> Waga: {{Patients.weight}} </div> 
         <a class="nav-link text-dark" [routerLink]="['/results/', Patients.patient_id]">
 <input type="submit" value="Badania" class="btn btn-outline-primary" /></a>
+
+        <input type="submit" value="Wypisz" class="btn btn-outline-primary" />
+</div>
+ </div>
