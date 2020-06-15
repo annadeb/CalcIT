@@ -1,4 +1,5 @@
 ﻿using CalcIt.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace CalcIT.Data
 {
-    public class UserContext : DbContext
+    public class UserContext : IdentityDbContext<ApplicationUser>
     {
         public UserContext(DbContextOptions<UserContext> options) : base(options)
         {
