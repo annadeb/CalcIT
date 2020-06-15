@@ -11,10 +11,11 @@ export class ResultsComponent{
   Results: Calculation[] = [];
   result;
   route: any;
-
+patient_id: any;
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute) { 
   http.get<Calculation[]>('api/Patients/Get_PatientResults/' + route.snapshot.params['patient_id']).subscribe(result => {
     this.Results = result;
+    this.patient_id = route.snapshot.params['patient_id'];
     console.log('api/Patients/Get_PatientResults/' + route.snapshot.params['patient_id'])
   }, error => console.error(route.snapshot.params['patient_id']));
   }

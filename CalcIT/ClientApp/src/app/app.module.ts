@@ -13,6 +13,7 @@ import { DepartmentsComponent } from './department/department.component';
 import { PatientsComponent } from './patients/patients.component';
 import { PatientComponent } from './patient/patient.component';
 import { ResultsComponent } from './results/results.component';
+import { BodyMassIndexComponent } from './body-mass-index/body-mass-index.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { ResultsComponent } from './results/results.component';
     PatientsComponent,
    PatientComponent,
    ResultsComponent,
+   BodyMassIndexComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -38,7 +40,7 @@ import { ResultsComponent } from './results/results.component';
       { path: 'patients/:department_id', component: PatientsComponent },
      { path: 'patient/:patient_id', component: PatientComponent },
      { path: 'results/:patient_id', component: ResultsComponent },
-
+     { path: 'body-mass-index/:patient_id', component: BodyMassIndexComponent },
     ])
   ],
   providers: [],
