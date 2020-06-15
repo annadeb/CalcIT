@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace CalcIT.Controllers
 {
-    [Route("api/[controller]/action")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class DepartmentsController : ControllerBase
     {

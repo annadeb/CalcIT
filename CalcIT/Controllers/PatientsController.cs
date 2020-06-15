@@ -4,6 +4,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using CalcIt.Models;
 using CalcIT.Data;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -55,6 +57,7 @@ namespace CalcIT.Controllers
         //    };
         //}
         // GET: api/Patients/5
+        //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
         [HttpGet("{id}")]
         public IEnumerable<Patient> GetPatients(int id)
         {
@@ -78,15 +81,15 @@ namespace CalcIT.Controllers
                 //_context.Patients.AddRange(pat);
                 //_context.SaveChanges();
 
-               
-           
+
+
                 var patients = _context.Patients.Where(x => x.department_id == id).ToList();
 
                 return patients;
             };
-            
+
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<ActionResult<Patient>> Get_PatientInfo(int id)
         {
             var patient = await _context.Patients
@@ -98,9 +101,10 @@ namespace CalcIT.Controllers
 
             return patient;
         }
-        [HttpGet]
+        [HttpGet("{id}")]
         public IEnumerable<Calculation> Get_PatientResults(int id)
         {
+           
             var result = _context.Calculations.Where(x => x.patient_id == id).ToList();
             return result;
         }
@@ -109,6 +113,15 @@ namespace CalcIT.Controllers
         public void Post([FromBody] string value)
         {
         }
+        //using (_context)
+        //{
+        //    var calcs = new List<Calculation>()
+        //     {
+        //        new Calculation {patient_id = 2, doctor_id=2, calculation_date=DateTime.Now, calculation_data="wszystko spoko", calculation_type="BMI", result="25"}
+        //     };
+        // _context.Calculations.AddRange(calcs);
+        //    _context.SaveChanges();
+        //}
 
         // PUT: api/Patients/5
         [HttpPut("{id}")]
