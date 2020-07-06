@@ -9,7 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class PatientsComponent {
   Patients: Patient[] = [];
   patient;
-    route: any;
+  route: any;
   
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute) {
     http.get<Patient[]>('api/Patients/GetPatients/' + route.snapshot.params['department_id']).subscribe(result => {

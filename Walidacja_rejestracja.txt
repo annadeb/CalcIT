@@ -1,0 +1,3 @@
+Walidacja: 
+Email musi mieć wzór: (znaki liczbowe i literowe)@(domena).(2 lub 3 znaki)
+Hasło musi spełniać: przynajmnej 8 znaków, małe litery, duże litery, liczby, znaki specjalne

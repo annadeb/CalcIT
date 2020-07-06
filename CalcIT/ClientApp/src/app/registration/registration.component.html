@@ -1,0 +1,47 @@
+<h1>Rejestracja</h1>
+   <div class="card card-login mx-auto" style="width: 50vh;">
+        <div class="card-body">
+            <form >
+                <div class="form-group">
+                    <!-- <div class="form-label-group">
+                        <input asp-for="Email" (keyup)="onKeyE($event)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class ="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                    </div> -->
+                    <input asp-for="Email" placeholder="Email address" (keyup)="onKeyE($event)" required="required" autofocus="autofocus" type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel">
+                    <label for="inputEmail">Email address</label>
+                    <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="alert alert-danger">
+                     <div [hidden]="!emailref.errors?.pattern">
+                       Błędny e-mail
+                     </div> 
+                    </div> 
+                </div>
+                
+                <div class="form-group">
+                    <!-- <div class="form-label-group"> -->
+                        <input asp-for="Password" (keyup)="onKeyP($event)"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}" class="form-control" placeholder="Password" required="required" id="password"name="password" ngModel #passwordref="ngModel">
+                        <label for="inputPassword">Password</label>
+                        <div *ngIf="passwordref.errors &&(passwordref.touched || passwordref.dirty)" class ="alert alert-danger">
+                            <div [hidden]="!passwordref.errors?.pattern">
+                              Błędne hasło
+                            </div> 
+                           </div> 
+                    <!-- </div> -->
+                </div>
+
+                <div class="form-group">
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="remember-me">
+                            Remember Password
+                        </label>
+                    </div>
+                </div>
+                <div style="text-align:center">
+                    <!-- <a class="nav-link text-dark" [routerLink]="['/login']"
+                    > -->
+                    <input type="submit" (click)="onSave($event)" value="Sign up" class="btn btn-outline-primary" />
+                    <!-- </a> -->
+                </div>
+                </form>
+          
+        </div>
+    </div>
