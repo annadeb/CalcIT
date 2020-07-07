@@ -41,9 +41,9 @@ namespace CalcIT
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration["ConnectionString:CalcIt"]));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<UserContext>()
-            .AddDefaultTokenProviders();
+            //services.AddIdentity<ApplicationUser, IdentityRole>()
+            //    .AddEntityFrameworkStores<UserContext>()
+            //.AddDefaultTokenProviders();
             //var jwtSection = Configuration.GetSection("JwtBearerTokenSettings"); 
 
             //var jwtBearerTokenSettings = jwtSection.Get<JwtBearerTokenSettings>();
@@ -112,7 +112,16 @@ namespace CalcIT
             //        await onTokenValidated(context);
 
             //    };
-        
+            services.AddIdentity<ApplicationUser, IdentityRole>(config =>
+            {
+                config.Password.RequireDigit = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequiredLength = 4;
+                config.Password.RequireUppercase = false;
+            })
+                .AddEntityFrameworkStores<UserContext>();
+
+
             } 
 
 

@@ -15,7 +15,16 @@ password:'bbb';
 //uploadForm:FormGroup;
 
 constructor( private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string) { 
-
+  // const formData = new FormData();
+  //   formData.append('Email', this.email);
+  //  formData.append('Password', this.password);
+  // httpClient.post<any>('api/account/register', formData).subscribe(
+  //   (res) => console.log(res),
+  //     (err) => console.log(err)
+  //   );
+  httpClient.get<any>('api/departments/get').subscribe(result => {
+    console.log(result)
+  }, error => console.error(error));
 
 }
 //constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string,){}
@@ -34,10 +43,10 @@ constructor( private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl
 //   (res) => console.log(res),
 //   (err) => console.log(err)
 // );
-// this.httpClient.post<any>('/api/account/register', formData).subscribe(
-// (res) => console.log(res),
-//   (err) => console.log(err)
-// );
+this.httpClient.post<any>('api/account/register', formData).subscribe(
+(res) => console.log(res),
+  (err) => console.log(err)
+);
 
   }
 onKeyE(event:any)
