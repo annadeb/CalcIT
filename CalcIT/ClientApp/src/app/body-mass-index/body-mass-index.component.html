@@ -4,19 +4,19 @@
 <div style="text-align:center">
    
         <p><b>Masa ciała:</b></p>
-        <br>
-        <input type="text" name="weight">
-        <br>
+        
+        <div><input #weight type="number" (keyup)="addWeight(weight.value)"></div>
         <br>
         <p><b>Wzrost w metrach:</b></p>
+        
+        <div><input type="number" #height (keyup)="addHeight(height.value)"/></div>
         <br>
-        <input type="text" name="height" />
+        <button class="btn btn-info" (click)="calculate()" >Zatwierdź</button>
         <br>
         <br>
-        <button class="btn btn-info">Zatwierdź</button>
-        <br>
-        <br>
-        <p><b>BMI: </b></p>
+        <p><b>BMI: {{BMI}} </b></p>
+        <ul class="list-group"><li class="list-group-item" *ngFor="let bmi of BMIs"><b>{{bmi}}</b></li></ul>
+        
         <br>
         
    
