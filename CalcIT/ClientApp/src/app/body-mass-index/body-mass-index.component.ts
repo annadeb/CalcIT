@@ -1,5 +1,5 @@
 import { Component,Input ,Inject, OnInit } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -30,10 +30,15 @@ export class BodyMassIndexComponent  {
   }
  height: number=180;
   weight: number=70;
+  patient_id:number;
+  calc: Calculation=new Calculation();
   BMIs=[];
   http: HttpClient
   constructor( http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute) { 
-    console.log(route.snapshot.params['patient_id'])
+    this.http=http;
+    //console.log(route.snapshot.params['patient_id'])
+    this.patient_id=route.snapshot.params['patient_id'];
+    console.log(this.patient_id);
   }
   public addWeight(weight:number){
     this.weight=weight;
@@ -41,12 +46,36 @@ export class BodyMassIndexComponent  {
   public addHeight(height:number){
     this.height=height;
   }
+  
   public calculate() {
     console.log(this.weight,this.height);
     console.log("BMI=" + this.weight/(this.height^2));
     this.BMIs=[];
     this.BMIs.push(this.weight/(this.height^2));
     
+    const formData = new FormData();
+    formData.append('calculation_data', 'waga: '+ this.weight.toString() + 'wzrost: '+ this.height.toString());
+   formData.append('result', (this.weight/(this.height^2)).toString());
+   formData.append('calculation_date', Date.now.toString());
+   formData.append('patient_id', this.patient_id.toString());
+   formData.append('doctor_id', "1");
+   console.log(formData)
+
+   const httpOptions = {
+    headers: new HttpHeaders({'Content-Type': 'application/json'})
+  }
+   
+    this.calc.patient_id = this.patient_id.toString();
+    this.calc.doctor_id = "1";
+    this.calc.result = (this.weight/(this.height^2)).toString();
+    this.calc.calculation_data = 'waga: '+ this.weight.toString() + 'wzrost: '+ this.height.toString();
+    this.calc.calculation_date = Date.now();
+
+
+    this.http.post<Calculation>('api/Calculation/PostCalculation', JSON.stringify(formData), httpOptions).subscribe(
+      (res) => console.log(res),
+        (err) => console.log(err)
+      );
   }
   
   // addBMI (bmi: Calculation): Observable<Calculation> {
@@ -77,10 +106,10 @@ interface BMI{
   height: number;
   weight: number;
 }
-interface Calculation {
-    patient_id: number;
-    doctor_id: number;
-    calculation_date: Date;
+class Calculation {
+    patient_id: string;
+    doctor_id: string;
+    calculation_date: number;
     calculation_data:string;
     calculation_type:string;
     result: string;
