@@ -1,5 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Route } from '@angular/compiler/src/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
@@ -8,45 +10,25 @@ import { HttpClient } from '@angular/common/http';
 })
 export class RegistrationComponent implements OnInit {
 
-email:'aaa';
-password:'bbb';
-
-//http:HttpClient;
-//uploadForm:FormGroup;
-
-constructor( private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string) { 
-  // const formData = new FormData();
-  //   formData.append('Email', this.email);
-  //  formData.append('Password', this.password);
-  // httpClient.post<any>('api/account/register', formData).subscribe(
-  //   (res) => console.log(res),
-  //     (err) => console.log(err)
-  //   );
-  httpClient.get<any>('api/departments/get').subscribe(result => {
-    console.log(result)
-  }, error => console.error(error));
-
+email:'';
+password:'';
+//route;
+constructor( private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string, private route:Router) { 
+  //this.route=route;
 }
-//constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string,){}
   ngOnInit() {
-    // this.uploadForm = this.formBuilder.group({
-    //   profile: ['']
-    // });
+ 
   }
   onSave(){
-    //console.log(this.email)
     const formData = new FormData();
     formData.append('Email', this.email);
    formData.append('Password', this.password);
-// console.log(formData)
-// this.http.post<any>('api/account/register', formData).subscribe(
-//   (res) => console.log(res),
-//   (err) => console.log(err)
-// );
 this.httpClient.post<any>('api/account/register', formData).subscribe(
-(res) => console.log(res),
-  (err) => console.log(err)
-);
+response => {  if(response.status==200){alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl('');} 
+else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')}},
+  error => {  if(error.status==200){alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl('');} 
+  else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')}
+  });
 
   }
 onKeyE(event:any)
