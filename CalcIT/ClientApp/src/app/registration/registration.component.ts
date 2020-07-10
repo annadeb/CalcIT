@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Route } from '@angular/compiler/src/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -12,9 +11,7 @@ export class RegistrationComponent implements OnInit {
 
 email:'';
 password:'';
-//route;
 constructor( private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string, private route:Router) { 
-  //this.route=route;
 }
   ngOnInit() {
  
@@ -34,7 +31,6 @@ else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')}},
 onKeyE(event:any)
 {
   this.email =event.target.value;
-  console.log(event.target.value)
 }
 onKeyP(event:any)
 {
