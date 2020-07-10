@@ -28,13 +28,13 @@ export class BodyMassIndexComponent  {
   
   public calculate() {
     console.log(this.weight,this.height);
-    console.log("BMI=" + this.weight/(this.height^2));
+    console.log("BMI=" + this.weight/(this.height*this.height));
     this.BMIs=[];
-    this.BMIs.push(Math.floor(this.weight/(this.height^2)));
+    this.BMIs.push(((Math.round((this.weight/(this.height*this.height))*100))/100));
     
     const formData = new FormData();
     formData.append('calculation_data', 'waga: '+ this.weight.toString() + ', wzrost: '+ this.height.toString());
-   formData.append('result', Math.floor(this.weight/(this.height^2)).toString());
+   formData.append('result', ((Math.round((this.weight/(this.height*this.height))*100))/100).toString());
    formData.append('calculation_date', new Date().toISOString());
    formData.append('calculation_type', "BMI");
    formData.append('patient_id', this.patient_id.toString());
