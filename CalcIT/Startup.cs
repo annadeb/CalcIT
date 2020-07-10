@@ -112,6 +112,7 @@ namespace CalcIT
             //        await onTokenValidated(context);
 
             //    };
+            services.AddControllers().AddNewtonsoftJson();
             services.AddIdentity<ApplicationUser, IdentityRole>(config =>
             {
                 config.Password.RequireDigit = false;
