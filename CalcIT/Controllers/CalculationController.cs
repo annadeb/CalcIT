@@ -15,7 +15,6 @@ namespace CalcIT.Controllers
     [ApiController]
     public class CalculationController : ControllerBase
     {
-        Calculation calculation;
         private readonly UserContext _context;
         public CalculationController(UserContext context)
         {
