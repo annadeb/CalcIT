@@ -8,6 +8,6 @@ namespace CalcIT.Data
 {
     public class ApplicationUser : IdentityUser
     {
-
+        public bool IsActivated{ get; set; }
     }
 }

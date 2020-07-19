@@ -41,30 +41,16 @@ namespace CalcIT
                 configuration.RootPath = "ClientApp/dist";
             });
             services.AddDbContext<UserContext>(options => options.UseSqlServer(Configuration["ConnectionString:CalcIt"]));
-            services.AddIdentity<ApplicationUser, IdentityRole>()
+            services.AddIdentity<ApplicationUser, IdentityRole>(config=>
+            {
+                config.Password.RequireDigit = false;
+                config.Password.RequireNonAlphanumeric = false;
+                config.Password.RequiredLength = 4;
+                config.Password.RequireUppercase = false;
+            })
                 .AddEntityFrameworkStores<UserContext>()
             .AddDefaultTokenProviders();
-            //var jwtSection = Configuration.GetSection("JwtBearerTokenSettings"); 
-
-            //var jwtBearerTokenSettings = jwtSection.Get<JwtBearerTokenSettings>();
-            //services.Configure<JwtBearerTokenSettings>(jwtSection);
-            //var key = Encoding.ASCII.GetBytes(jwtBearerTokenSettings.SecretKey);
-
-            //services.AddAuthentication(options => 
-            //{ options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //  options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme; })
-            // .AddJwtBearer(options => {
-            //  options.RequireHttpsMetadata = false;
-            //  options.SaveToken = true; 
-            //    options.TokenValidationParameters = new TokenValidationParameters() 
-            //        { ValidateIssuer = true,
-            //            ValidIssuer = jwtBearerTokenSettings.Issuer,
-            //            ValidateAudience = true, 
-            //            ValidAudience = jwtBearerTokenSettings.Audience,
-            //            ValidateIssuerSigningKey = true, 
-            //            IssuerSigningKey = new SymmetricSecurityKey(key), 
-            //            ValidateLifetime = true, 
-            //            ClockSkew = TimeSpan.Zero };
+   
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear(); // => remove default claims
             services
                 .AddAuthentication(options =>
@@ -89,31 +75,16 @@ namespace CalcIT
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
                 });
-            //services.AddAuthentication()
-            ////.AddGoogle(options =>
-            ////{
-            ////    IConfigurationSection googleAuthNSection =
-            ////        Configuration.GetSection("Authentication:Google");
 
-            ////    options.ClientId = googleAuthNSection["450061769453-v6v6ng5rhtm3ear4vjp6e6gsmecsd4pr.apps.googleusercontent.com"];
-            ////    options.ClientSecret = googleAuthNSection["ekOP2tjVKvlYfEfwLEndFoOR"];
-            ////}
+                //.AddGoogle(options =>
+                //{
+                //    IConfigurationSection googleAuthNSection =
+                //        Configuration.GetSection("Authentication:Google");
 
-            //);
-            //        .AddIdentityServerJwt();
-            //        services.Configure<JwtBearerOptions>(
-            //IdentityServerJwtConstants.IdentityServerJwtBearerScheme,
-            //options =>
-            //{
-            //    var onTokenValidated = options.Events.OnTokenValidated;
-
-            //    options.Events.OnTokenValidated = async context =>
-            //    {
-            //        await onTokenValidated(context);
-
-            //    };
-        
-            } 
+                //    options.ClientId = googleAuthNSection["450061769453-v6v6ng5rhtm3ear4vjp6e6gsmecsd4pr.apps.googleusercontent.com"];
+                //    options.ClientSecret = googleAuthNSection["ekOP2tjVKvlYfEfwLEndFoOR"];
+                //});
+        }
 
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
