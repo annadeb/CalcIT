@@ -27,5 +27,6 @@ namespace CalcIt.Models
 
         public DateTime registration_date { get; set; }
         public DateTime birthdate { get; set; }
+        public virtual Department Department { get; set; }
     }
 }

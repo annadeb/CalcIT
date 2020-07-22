@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CalcIT.Data;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,13 +13,14 @@ namespace CalcIt.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         [Key]
         public Int64 at_id { get; set; }
-        [ForeignKey("doctor_id")]
-        [Required]
-        public Int64 doctor_id { get; set; }
         [Required]
         public DateTime date_time { get; set; }
         [Required]
         [StringLength(255)]
         public String events { get; set; }
+        [Required]
+        public string user_id { get; set; }
+        [ForeignKey("user_id")]
+        public virtual ApplicationUser ApplicationUser { get; set; }
     }
 }
