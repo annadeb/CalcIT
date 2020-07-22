@@ -5,11 +5,19 @@ using System.Linq;
 using System.Threading.Tasks;
 using CalcIt.Models;
 using CalcIT.Data;
+using System.Security.AccessControl;
+using AutoMapper.Configuration;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace CalcIT.Controllers
 {
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin, Doctor")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class DepartmentsController : ControllerBase

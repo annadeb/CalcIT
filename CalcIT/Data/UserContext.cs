@@ -14,7 +14,7 @@ namespace CalcIT.Data
         public UserContext(DbContextOptions<UserContext> options) : base(options)
         {
         }
-        public DbSet<Doctor> Doctors { get; set; }
+        //public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Department> Departmens { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<Calculation> Calculations { get; set; }

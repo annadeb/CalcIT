@@ -54,19 +54,21 @@ namespace CalcIT.Controllers
                 }
              
 
-                return new ApplicationException("INVALID_LOGIN_ATTEMPT");
+                throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
             }
         [AllowAnonymous]
         [HttpPost]
             public async Task<object> Register([FromForm] RegisterDto model)
             {
-          
-
-            var user = new ApplicationUser
+            var ifUserExist = _userManager.FindByEmailAsync(model.Email);
+            if (ifUserExist!=null)
+            {
+                var user = new ApplicationUser
                 {
                     UserName = model.Email,
                     Email = model.Email,
                 };
+            
                 var result = await _userManager.CreateAsync(user, model.Password);
                 
                 if (result.Succeeded)
@@ -75,8 +77,8 @@ namespace CalcIT.Controllers
                     await _signInManager.SignInAsync(user, false);
                     return await GenerateJwtToken(model.Email, user);
                 }
-
-                throw new ApplicationException("UNKNOWN_ERROR");
+            }
+            throw new ApplicationException("User already exists");
             }
 
             private async Task<object> GenerateJwtToken(string email, ApplicationUser user)

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Web.Http.ModelBinding;
 using CalcIt.Models;
 using CalcIT.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -14,6 +15,8 @@ using Microsoft.EntityFrameworkCore.Metadata.Internal;
 namespace CalcIT.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin,Doctor")]
     [ApiController]
     public class PatientsController : ControllerBase
     {
@@ -119,20 +122,41 @@ namespace CalcIT.Controllers
         }
         // POST: api/Patients
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> CreatePatient([FromBody] Patient model)
         {
-        }
-        //using (_context)
-        //{
-        //    var calcs = new List<Calculation>()
-        //     {
-        //        new Calculation {patient_id = 2, doctor_id=2, calculation_date=DateTime.Now, calculation_data="wszystko spoko", calculation_type="BMI", result="25"}
-        //     };
-        // _context.Calculations.AddRange(calcs);
-        //    _context.SaveChanges();
-        //}
 
-        // PUT: api/Patients/5
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Not a valid model");
+            }
+            else
+            {
+                using (_context)
+                {
+                    _context.Patients.Add(new Patient()
+                    {
+                        name = model.name,
+                        surname = model.surname,
+                        birthdate = model.birthdate,
+                        PESEL = model.PESEL,
+                        height = model.height,
+                        weight = model.weight,
+                        department_id = model.department_id,
+                        registration_date = DateTime.Now,
+                    });
+
+                    await _context.SaveChangesAsync();
+                };
+                return Ok();
+            }
+        }
+        [HttpGet]
+        public async Task<IEnumerable<Department>> GetDepartments()
+        {
+            var departments = await _context.Departmens.ToListAsync();
+            return departments;
+        }
+         // PUT: api/Patients/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {

@@ -52,12 +52,13 @@ namespace CalcIT.Controllers
                 _roleManager.CreateAsync(doctor);
             }
         }
-        
+
         [HttpGet]
         public async Task<object> GetUsers()
         {
             return await _userManager.Users.ToListAsync();
         }
+
         [HttpGet]
         public async Task<object> GetUserRoles(string userId)
         {
