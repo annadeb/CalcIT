@@ -14,5 +14,6 @@ namespace CalcIt.Models
         public Int64 department_id { get; set; }
         [StringLength(50)]
         public string name { get; set; }
+        public virtual ICollection<Patient> Patients { get; set; }
     }
 }
