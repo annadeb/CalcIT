@@ -16,9 +16,11 @@ onSave(){
   formData.append('Email', this.email);
  formData.append('Password', this.password);
 this.httpClient.post<any>('api/account/login', formData).subscribe(
-response => {  console.log(response); this.route.navigate(['department'], {queryParams: {token:response.error.text}}); localStorage.setItem('token',response.error.text);
+response => {  if(response.status==200){this.route.navigate(['department']); localStorage.setItem('token',response.error.text);} 
+else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')};
 },
-error => {  console.log(error); localStorage.setItem('token',error.error.text); this.route.navigate(['department']);
+error => { if(error.status==200){this.route.navigate(['department']); localStorage.setItem('token',error.error.text);} 
+else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')};
 });
 
 }
