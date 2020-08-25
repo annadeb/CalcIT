@@ -15,7 +15,8 @@ import { PatientComponent } from './patient/patient.component';
 import { ResultsComponent } from './results/results.component';
 import { BodyMassIndexComponent } from './body-mass-index/body-mass-index.component';
 import { RegistrationComponent } from './registration/registration.component';
-
+import { TokenInterceptor } from './common/tokenInterceptor';
+import { AuthService } from './common/authService';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,7 +47,9 @@ import { RegistrationComponent } from './registration/registration.component';
      {path:'registration',component:RegistrationComponent}
     ])
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true},AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
