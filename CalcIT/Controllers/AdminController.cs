@@ -30,27 +30,27 @@ namespace CalcIT.Controllers
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            var naFlag = _roleManager.RoleExistsAsync("NotActive").Result;
-            if (!naFlag)
-            {
-                var notactive = new IdentityRole();
-                notactive.Name = "NotActive";
-                _roleManager.CreateAsync(notactive);
-            }
-            var aFlag = _roleManager.RoleExistsAsync("Admin").Result;
-            if (!aFlag)
-            {
-                var admin = new IdentityRole();
-                admin.Name = "Admin";
-                _roleManager.CreateAsync(admin);
-            }
-            var dFlag = _roleManager.RoleExistsAsync("Doctor").Result;
-            if (!dFlag)
-            {
-                var doctor = new IdentityRole();
-                doctor.Name = "Doctor";
-                _roleManager.CreateAsync(doctor);
-            }
+            //var naFlag = _roleManager.RoleExistsAsync("NotActive").Result;
+            //if (!naFlag)
+            //{
+            //    var notactive = new IdentityRole();
+            //    notactive.Name = "NotActive";
+            //    _roleManager.CreateAsync(notactive);
+            //}
+            //var aFlag = _roleManager.RoleExistsAsync("Admin").Result;
+            //if (!aFlag)
+            //{
+            //    var admin = new IdentityRole();
+            //    admin.Name = "Admin";
+            //    _roleManager.CreateAsync(admin);
+            //}
+            //var dFlag = _roleManager.RoleExistsAsync("Doctor").Result;
+            //if (!dFlag)
+            //{
+            //    var doctor = new IdentityRole();
+            //    doctor.Name = "Doctor";
+            //    _roleManager.CreateAsync(doctor);
+            //}
         }
 
         [HttpGet]
@@ -63,19 +63,33 @@ namespace CalcIT.Controllers
         public async Task<object> GetUserRoles(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound("Such user doesn't exist");    
+            }
             var roles =  _userManager.GetRolesAsync(user);
             var userrole = new
             {
                user,
                roles
             };
-            return(userrole);
+            return Ok(userrole);
         }
         [HttpPost]
-        public async Task<IdentityResult> SpecifyUserRole(string userId,string role)
+        public async Task<object> SpecifyUserRole(string userId,string role)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            return await _userManager.AddToRoleAsync(user, role);
+            if (user == null)
+            {
+                return NotFound("Such user doesn't exist");
+            }
+            var ifRoleExists = _roleManager.RoleExistsAsync(role);
+            if (!ifRoleExists.Result)
+            {
+                return NotFound("Such role doesn't exist");
+            }
+            await _userManager.AddToRoleAsync(user, role);
+            return Ok("Role's been added to the user");
         }
     }
 }

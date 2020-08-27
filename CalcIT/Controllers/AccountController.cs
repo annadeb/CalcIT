@@ -4,6 +4,8 @@ using System.ComponentModel.DataAnnotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
+using System.Web;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
+
 
 namespace CalcIT.Controllers
 {
@@ -35,11 +38,33 @@ namespace CalcIT.Controllers
                 RoleManager<IdentityRole> roleManager,
                 IConfiguration configuration
                 )
-            {
-                _userManager = userManager;
-                _signInManager = signInManager;
-                _roleManager = roleManager;
-                _configuration = configuration;
+                {
+                    _userManager = userManager;
+                    _signInManager = signInManager;
+                    _roleManager = roleManager;
+                    _configuration = configuration;
+         
+                var naFlag = _roleManager.RoleExistsAsync("NotActive").Result;
+                if (!naFlag)
+                {
+                    var notactive = new IdentityRole();
+                    notactive.Name = "NotActive";
+                    _roleManager.CreateAsync(notactive);
+                }
+                var aFlag = _roleManager.RoleExistsAsync("Admin").Result;
+                if (!aFlag)
+                {
+                    var admin = new IdentityRole();
+                    admin.Name = "Admin";
+                    _roleManager.CreateAsync(admin);
+                }
+                var dFlag = _roleManager.RoleExistsAsync("Doctor").Result;
+                if (!dFlag)
+                {
+                    var doctor = new IdentityRole();
+                    doctor.Name = "Doctor";
+                    _roleManager.CreateAsync(doctor);
+                }
             }
             [AllowAnonymous]
             [HttpPost]
@@ -52,10 +77,10 @@ namespace CalcIT.Controllers
                 var appUser = _userManager.Users.SingleOrDefault(r => r.Email == model.Email);
                  return await GenerateJwtToken(model.Email, appUser);
                 }
-             
 
-                throw new ApplicationException("INVALID_LOGIN_ATTEMPT");
+            return NotFound("Login or password are wrong");
             }
+
         [AllowAnonymous]
         [HttpPost]
             public async Task<object> Register([FromForm] RegisterDto model)
@@ -78,7 +103,8 @@ namespace CalcIT.Controllers
                     return await GenerateJwtToken(model.Email, user);
                 }
             }
-            throw new ApplicationException("User already exists");
+           // throw new ApplicationException("User already exists");
+            return BadRequest("User already exists");
             }
 
             private async Task<object> GenerateJwtToken(string email, ApplicationUser user)
