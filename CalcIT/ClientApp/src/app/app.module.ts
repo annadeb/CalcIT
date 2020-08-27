@@ -15,8 +15,8 @@ import { PatientComponent } from './patient/patient.component';
 import { ResultsComponent } from './results/results.component';
 import { BodyMassIndexComponent } from './body-mass-index/body-mass-index.component';
 import { RegistrationComponent } from './registration/registration.component';
-import { AdminPanelComponent } from './admin-panel/admin-panel.component';
-
+import { TokenInterceptor } from './common/tokenInterceptor';
+import { AuthService } from './common/authService';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,7 +49,9 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
      {path:'admin-panel',component:AdminPanelComponent}
     ])
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true},AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

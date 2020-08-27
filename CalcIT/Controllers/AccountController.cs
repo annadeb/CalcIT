@@ -98,7 +98,7 @@ namespace CalcIT.Controllers
                 
                 if (result.Succeeded)
                 {
-                    await _userManager.AddToRoleAsync(user, "NotActive");
+                    await _userManager.AddToRoleAsync(user, "Admin");
                     await _signInManager.SignInAsync(user, false);
                     return await GenerateJwtToken(model.Email, user);
                 }

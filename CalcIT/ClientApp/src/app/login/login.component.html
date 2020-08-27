@@ -4,13 +4,13 @@
             <form>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input asp-for="Email" class ="form-control" placeholder="Email address" required="required" autofocus="autofocus">
+                        <input asp-for="Email" class ="form-control" (keyup)="onKeyE($event)" placeholder="Email address" required="required" autofocus="autofocus">
                         <label for="inputEmail">Email address</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input asp-for="Password" class="form-control" placeholder="Password" required="required">
+                        <input asp-for="Password" class="form-control" (keyup)="onKeyP($event)" placeholder="Password" required="required">
                         <label for="inputPassword">Password</label>
                     </div>
                 </div>
@@ -24,9 +24,9 @@
                     </div>
                 </div>
                 <div style="text-align:center">
-                    <a class="nav-link text-dark" [routerLink]="['/department']"
+                    <a class="nav-link text-dark" 
                     >
-                    <input type="submit" value="Login" class="btn btn-outline-primary" />
+                    <input type="submit" (click)="onSave($event)" value="Login" class="btn btn-outline-primary" />
                     </a>
                 </div>
                 </form>
