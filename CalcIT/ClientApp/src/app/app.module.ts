@@ -15,6 +15,7 @@ import { PatientComponent } from './patient/patient.component';
 import { ResultsComponent } from './results/results.component';
 import { BodyMassIndexComponent } from './body-mass-index/body-mass-index.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { RegistrationComponent } from './registration/registration.component';
    ResultsComponent,
    BodyMassIndexComponent,
    RegistrationComponent,
+   AdminPanelComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -43,7 +45,8 @@ import { RegistrationComponent } from './registration/registration.component';
      { path: 'patient/:patient_id', component: PatientComponent },
      { path: 'results/:patient_id', component: ResultsComponent },
      { path: 'body-mass-index/:patient_id', component: BodyMassIndexComponent },
-     {path:'registration',component:RegistrationComponent}
+     {path:'registration',component:RegistrationComponent},
+     {path:'admin-panel',component:AdminPanelComponent}
     ])
   ],
   providers: [],

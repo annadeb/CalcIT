@@ -24,7 +24,7 @@ this.httpClient.post<any>('api/account/register', formData).subscribe(
 response => {  if(response.status==200){alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl('');} 
 else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')}},
   error => {  if(error.status==200){alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl('');} 
-  else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')}
+  else{alert('Niepoprawne dane. Spróbuj jeszcze raz.'); console.log(error)}
   });
 
   }

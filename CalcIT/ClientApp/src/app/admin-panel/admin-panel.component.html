@@ -1,0 +1,32 @@
+<h1>Panel administratora</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Imię</th>
+      <th>Nazwisko</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr *ngFor="let user of Users; let i=index">
+      <td>{{user.user_id}}</td>
+      <td>{{user.Name}}</td>
+      <td>{{user.Surname}}</td>
+      <td>
+  <select class="form-control" id="Status" name="Status">
+    <option value="Nieaktywny">Nieaktywny</option>
+    <option value="Lekarz">Lekarz</option>
+  </select>
+</td>
+<td>
+  <a class="nav-link text-dark" [routerLink]="['/']">
+<input type="submit" value="Zatwierdź" class="btn btn-outline-primary" /></a>
+</td>
+    </tr>
+  </tbody>
+</table>
+
