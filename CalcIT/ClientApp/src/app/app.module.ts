@@ -17,6 +17,7 @@ import { BodyMassIndexComponent } from './body-mass-index/body-mass-index.compon
 import { RegistrationComponent } from './registration/registration.component';
 import { TokenInterceptor } from './common/tokenInterceptor';
 import { AuthService } from './common/authService';
+import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 @NgModule({
   declarations: [
     AppComponent,
