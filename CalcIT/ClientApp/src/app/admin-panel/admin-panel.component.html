@@ -5,17 +5,17 @@
   <thead>
     <tr>
       <th>ID</th>
-      <th>Imię</th>
-      <th>Nazwisko</th>
+      <th>Email</th>
       <th>Status</th>
+      <th>Zmień</th>
     </tr>
   </thead>
   <tbody>
     
     <tr *ngFor="let user of Users; let i=index">
-      <td>{{user.user_id}}</td>
-      <td>{{user.Name}}</td>
-      <td>{{user.Surname}}</td>
+      <td>{{user.id}}</td>
+      <td>{{user.userName}}</td>
+      <td>{{user.Status}}</td>
       <td>
   <select class="form-control" id="Status" name="Status">
     <option value="Nieaktywny">Nieaktywny</option>
