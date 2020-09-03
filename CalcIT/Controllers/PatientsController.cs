@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using static CalcIT.Controllers.AuditController;
+
 
 namespace CalcIT.Controllers
 {
@@ -61,6 +63,7 @@ namespace CalcIT.Controllers
         //}
         // GET: api/Patients/5
         //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+        [Audit]
         [HttpGet("{id}")]
         public IEnumerable<Patient> GetPatients(int id)
         {

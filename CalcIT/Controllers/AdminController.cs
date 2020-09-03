@@ -14,9 +14,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace CalcIT.Controllers
 {
-    
-    //[Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
-    //[Authorize(Roles = "Admin")]
+
+    [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class AdminController : ControllerBase
@@ -65,18 +65,18 @@ namespace CalcIT.Controllers
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
             {
-                return NotFound("Such user doesn't exist");    
+                return NotFound("Such user doesn't exist");
             }
-            var roles =  _userManager.GetRolesAsync(user);
+            var roles = _userManager.GetRolesAsync(user);
             var userrole = new
             {
-               user,
-               roles
+                user,
+                roles
             };
             return Ok(userrole);
         }
         [HttpPost]
-        public async Task<object> SpecifyUserRole(string userId,string role)
+        public async Task<object> SpecifyUserRole(string userId, string role)
         {
             var user = await _userManager.FindByIdAsync(userId);
             if (user == null)
