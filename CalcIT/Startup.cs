@@ -17,6 +17,7 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Text;
 using System.IdentityModel.Tokens.Jwt;
+using Microsoft.CodeAnalysis.Options;
 
 namespace CalcIT
 {
@@ -58,7 +59,6 @@ namespace CalcIT
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
                     options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-
                 })
                 .AddJwtBearer(cfg =>
                 {
@@ -74,16 +74,18 @@ namespace CalcIT
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:JwtKey"])),
                         ClockSkew = TimeSpan.Zero // remove delay of token when expire
                     };
+                })
+                .AddGoogle(options =>
+                {
+                    IConfigurationSection googleAuthNSection =
+                        Configuration.GetSection("Authentication:Google");
+
+                    options.ClientId = "450061769453-v6v6ng5rhtm3ear4vjp6e6gsmecsd4pr.apps.googleusercontent.com";
+                    options.ClientSecret ="ekOP2tjVKvlYfEfwLEndFoOR";
+                    options.SignInScheme = IdentityConstants.ExternalScheme;
+                    options.CallbackPath = "/signin-callback";
+
                 });
-
-                //.AddGoogle(options =>
-                //{
-                //    IConfigurationSection googleAuthNSection =
-                //        Configuration.GetSection("Authentication:Google");
-
-                //    options.ClientId = googleAuthNSection["450061769453-v6v6ng5rhtm3ear4vjp6e6gsmecsd4pr.apps.googleusercontent.com"];
-                //    options.ClientSecret = googleAuthNSection["ekOP2tjVKvlYfEfwLEndFoOR"];
-                //});
         }
 
 
