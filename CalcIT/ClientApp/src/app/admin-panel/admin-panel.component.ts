@@ -19,15 +19,27 @@ export class AdminPanelComponent{
 
     http.get<User[]>('api/admin/GetUsers').subscribe(result => {
       this.Users = result;
+      for (let index = 0; index < this.Users.length; index++) {
+        http.get<UserRole>('api/admin/GetUserRoles?userId='+ this.Users[index].id ).subscribe(role => {
+          this.Users[index].Status = role.roles.result.toString();
+          console.log('ROLA!')
+          console.log(role)
+        }, error => console.error(error));
       console.log(result)
+    }}, error => console.error(error));
+
+
+    /*http.get<UserRole>('api/admin/GetUserRoles?userId='+  '8b5a7fa2-7edd-4591-827d-2eafc0a44569').subscribe(role => {
+      console.log('ROLA!')
+      console.log(role.roles.result[0])
     }, error => console.error(error));
 
     for (let index = 0; index < this.Users.length; index++) {
-      http.get<UserRole>('api/admin/GetUserRoles/'+this.Users[index].id).subscribe(role => {
-        this.Users[index].Status = role.roles;
+      http.get<UserRole>('api/admin/GetUserRoles?userId='+ this.Users[index].id ).subscribe(role => {
+        this.Users[index].Status = role.roles.result.toString();
         console.log('ROLA!')
-        console.log(role.roles)
-      }, error => console.error(error));
+        console.log(role)
+      }, error => console.error(error)); */
     }
   /*  this.Users.forEach(user => {
       
@@ -37,7 +49,7 @@ export class AdminPanelComponent{
       }, error => console.error(error));
     });*/
     
-  }
+  
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
         console.log(params['token']); this.token=params['token'];
@@ -52,5 +64,9 @@ interface User {
  interface UserRole
  {
     user: string;
-    roles: string;
+    roles: Roles;
  };
+
+ interface Roles{
+result: string[];
+ }
