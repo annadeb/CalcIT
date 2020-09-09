@@ -8,25 +8,24 @@
       <th>Email</th>
       <th>Status</th>
       <th>Zmień</th>
-    </tr>
+      <th></th>
+  </tr>
   </thead>
   <tbody>
-    
     <tr *ngFor="let user of Users; let i=index">
       <td>{{user.id}}</td>
       <td>{{user.userName}}</td>
       <td>{{user.Status}}</td>
       <td>
-  <select class="form-control" id="Status" name="Status">
-    <option value="Nieaktywny">Nieaktywny</option>
-    <option value="Lekarz">Lekarz</option>
-  </select>
-</td>
-<td>
-  <a class="nav-link text-dark" [routerLink]="['/']">
-<input type="submit" value="Zatwierdź" class="btn btn-outline-primary" /></a>
-</td>
+        <select  [(ngModel)]="selectedOption" class="form-control" id="statusSelect" name="Status">
+          <option *ngFor="let o of options">
+           {{o.name}}
+          </option>
+        </select> 
+      </td>
+      <td>
+        <input type="submit" (click)="submit(user.id)" value="Zatwierdź" class="btn btn-outline-primary" />
+      </td>
     </tr>
   </tbody>
 </table>
-
