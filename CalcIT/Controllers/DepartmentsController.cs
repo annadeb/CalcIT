@@ -13,12 +13,14 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static CalcIT.Controllers.AuditController;
 
 namespace CalcIT.Controllers
 {
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize(Roles = "Admin, Doctor")]
     [Route("api/[controller]/[action]")]
+    [Audit]
     [ApiController]
     public class DepartmentsController : ControllerBase
     {

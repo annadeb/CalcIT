@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-
+using static CalcIT.Controllers.AuditController;
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace CalcIT.Controllers
@@ -20,6 +20,7 @@ namespace CalcIT.Controllers
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize(Roles = "Admin, Doctor")]
     [Route("api/[controller]/[action]")]
+    [Audit]
     [ApiController]
     public class CalculationController : ControllerBase
     {

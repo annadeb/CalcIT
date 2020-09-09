@@ -17,6 +17,7 @@ using static CalcIT.Controllers.AuditController;
 namespace CalcIT.Controllers
 {
     [Route("api/[controller]/[action]")]
+    [Audit]
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize(Roles = "Admin,Doctor")]
     [ApiController]
