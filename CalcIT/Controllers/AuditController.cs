@@ -37,13 +37,14 @@ namespace CalcIT.Controllers
 
                 var request = filterContext.HttpContext.Request;
                 var user = filterContext.HttpContext.User.IsAuthenticated() ? filterContext.HttpContext.User.Claims.FirstOrDefault().Value : "Anonymous";
+                var cos = context.Users.FirstOrDefault(x => x.UserName == user);
                 AuditTrail audit = new AuditTrail()
                 {
                     user_id = user,
                     events = request.Path,
                     status_code = request.HttpContext.Response.StatusCode,
                     date_time = DateTime.UtcNow,
-                    ApplicationUser = context.Users.FirstOrDefault(x => x.UserName == user)
+                    ApplicationUser = cos
 
                 };
 

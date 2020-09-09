@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using AutoMapper.Configuration;
+using CalcIt.Models;
 using CalcIT.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -11,46 +13,30 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using static CalcIT.Controllers.AuditController;
 
 namespace CalcIT.Controllers
 {
 
     [Authorize(AuthenticationSchemes = JwtBearerDefaults.AuthenticationScheme)]
     [Authorize(Roles = "Admin")]
+    [Audit]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class AdminController : ControllerBase
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly UserContext _context;
         public AdminController(
             UserManager<ApplicationUser> userManager,
-            RoleManager<IdentityRole> roleManager
+            RoleManager<IdentityRole> roleManager,
+            UserContext context
             )
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            //var naFlag = _roleManager.RoleExistsAsync("NotActive").Result;
-            //if (!naFlag)
-            //{
-            //    var notactive = new IdentityRole();
-            //    notactive.Name = "NotActive";
-            //    _roleManager.CreateAsync(notactive);
-            //}
-            //var aFlag = _roleManager.RoleExistsAsync("Admin").Result;
-            //if (!aFlag)
-            //{
-            //    var admin = new IdentityRole();
-            //    admin.Name = "Admin";
-            //    _roleManager.CreateAsync(admin);
-            //}
-            //var dFlag = _roleManager.RoleExistsAsync("Doctor").Result;
-            //if (!dFlag)
-            //{
-            //    var doctor = new IdentityRole();
-            //    doctor.Name = "Doctor";
-            //    _roleManager.CreateAsync(doctor);
-            //}
+            _context = context;
         }
 
         [HttpGet]
@@ -91,5 +77,22 @@ namespace CalcIT.Controllers
             await _userManager.AddToRoleAsync(user, role);
             return Ok("Role's been added to the user");
         }
+        [HttpGet]
+        public async Task<IEnumerable<AuditTrail>> GetFullAudit()
+        {
+            return await _context.AuditTrails.ToListAsync();
+        }
+        [HttpGet]
+        public async Task<IActionResult> GetUsersAudit(string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user != null)
+            {
+                var auditTrails = _context.AuditTrails.Where(x => x.user_id == userId);
+                return Ok(auditTrails);
+            }
+            return NotFound("User not found");
+        }
+
     }
 }

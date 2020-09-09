@@ -177,6 +177,7 @@ namespace CalcIT.Controllers
                 if (identResult.Succeeded)
                 {
                     identResult = await _userManager.AddLoginAsync(user, info);
+                    await _userManager.AddToRoleAsync(user, "NotActive");
                     if (identResult.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, false);
