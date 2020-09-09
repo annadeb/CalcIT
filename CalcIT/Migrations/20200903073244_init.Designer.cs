@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CalcIT.Migrations
 {
     [DbContext(typeof(UserContext))]
-    [Migration("20200614161549_indentity")]
-    partial class indentity
+    [Migration("20200903073244_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -96,15 +96,21 @@ namespace CalcIT.Migrations
                     b.Property<DateTime>("date_time")
                         .HasColumnType("datetime2");
 
-                    b.Property<long>("doctor_id")
-                        .HasColumnType("bigint");
-
                     b.Property<string>("events")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<int>("status_code")
+                        .HasColumnType("int");
+
+                    b.Property<string>("user_id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("at_id");
+
+                    b.HasIndex("user_id");
 
                     b.ToTable("AuditTrails");
                 });
@@ -127,17 +133,25 @@ namespace CalcIT.Migrations
                         .HasColumnType("nvarchar(50)")
                         .HasMaxLength(50);
 
-                    b.Property<long>("doctor_id")
+                    b.Property<long>("patient_id")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("patient_id")
+                    b.Property<long?>("patient_id1")
                         .HasColumnType("bigint");
 
                     b.Property<string>("result")
                         .HasColumnType("nvarchar(255)")
                         .HasMaxLength(255);
 
+                    b.Property<string>("user_id")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
                     b.HasKey("calculation_id");
+
+                    b.HasIndex("patient_id1");
+
+                    b.HasIndex("user_id");
 
                     b.ToTable("Calculations");
                 });
@@ -158,24 +172,6 @@ namespace CalcIT.Migrations
                     b.ToTable("Departmens");
                 });
 
-            modelBuilder.Entity("CalcIt.Models.Doctor", b =>
-                {
-                    b.Property<long>("doctor_id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("doctor_id");
-
-                    b.ToTable("Doctors");
-                });
-
             modelBuilder.Entity("CalcIt.Models.Patient", b =>
                 {
                     b.Property<long>("patient_id")
@@ -190,6 +186,9 @@ namespace CalcIT.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<long>("department_id")
+                        .HasColumnType("bigint");
+
+                    b.Property<long?>("department_id1")
                         .HasColumnType("bigint");
 
                     b.Property<double>("height")
@@ -211,6 +210,8 @@ namespace CalcIT.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("patient_id");
+
+                    b.HasIndex("department_id1");
 
                     b.ToTable("Patients");
                 });
@@ -344,6 +345,35 @@ namespace CalcIT.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("CalcIt.Models.AuditTrail", b =>
+                {
+                    b.HasOne("CalcIT.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany("AuditTrails")
+                        .HasForeignKey("user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CalcIt.Models.Calculation", b =>
+                {
+                    b.HasOne("CalcIt.Models.Patient", "Patient")
+                        .WithMany()
+                        .HasForeignKey("patient_id1");
+
+                    b.HasOne("CalcIT.Data.ApplicationUser", "ApplicationUser")
+                        .WithMany("Calculations")
+                        .HasForeignKey("user_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("CalcIt.Models.Patient", b =>
+                {
+                    b.HasOne("CalcIt.Models.Department", "Department")
+                        .WithMany("Patients")
+                        .HasForeignKey("department_id1");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

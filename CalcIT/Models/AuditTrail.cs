@@ -18,6 +18,7 @@ namespace CalcIt.Models
         [Required]
         [StringLength(255)]
         public String events { get; set; }
+        public int status_code { get; set; }
         [Required]
         public string user_id { get; set; }
         [ForeignKey("user_id")]

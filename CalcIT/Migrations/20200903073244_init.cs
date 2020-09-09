@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace CalcIT.Migrations
 {
-    public partial class indentity : Migration
+    public partial class init : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -44,6 +44,19 @@ namespace CalcIT.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_AspNetUsers", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Departmens",
+                columns: table => new
+                {
+                    department_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Departmens", x => x.department_id);
                 });
 
             migrationBuilder.CreateTable(
@@ -152,6 +165,86 @@ namespace CalcIT.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "AuditTrails",
+                columns: table => new
+                {
+                    at_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    date_time = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    events = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
+                    status_code = table.Column<int>(type: "int", nullable: false),
+                    user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AuditTrails", x => x.at_id);
+                    table.ForeignKey(
+                        name: "FK_AuditTrails_AspNetUsers_user_id",
+                        column: x => x.user_id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Patients",
+                columns: table => new
+                {
+                    patient_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    department_id = table.Column<long>(type: "bigint", nullable: false),
+                    PESEL = table.Column<long>(type: "bigint", nullable: false),
+                    name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    surname = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    weight = table.Column<double>(type: "float", maxLength: 50, nullable: false),
+                    height = table.Column<double>(type: "float", nullable: false),
+                    registration_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    birthdate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    department_id1 = table.Column<long>(type: "bigint", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Patients", x => x.patient_id);
+                    table.ForeignKey(
+                        name: "FK_Patients_Departmens_department_id1",
+                        column: x => x.department_id1,
+                        principalTable: "Departmens",
+                        principalColumn: "department_id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Calculations",
+                columns: table => new
+                {
+                    calculation_id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    patient_id = table.Column<long>(type: "bigint", nullable: false),
+                    calculation_date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    calculation_data = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    calculation_type = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    result = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: true),
+                    patient_id1 = table.Column<long>(type: "bigint", nullable: true),
+                    user_id = table.Column<string>(type: "nvarchar(450)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Calculations", x => x.calculation_id);
+                    table.ForeignKey(
+                        name: "FK_Calculations_AspNetUsers_user_id",
+                        column: x => x.user_id,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Calculations_Patients_patient_id1",
+                        column: x => x.patient_id1,
+                        principalTable: "Patients",
+                        principalColumn: "patient_id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -190,6 +283,26 @@ namespace CalcIT.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AuditTrails_user_id",
+                table: "AuditTrails",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Calculations_patient_id1",
+                table: "Calculations",
+                column: "patient_id1");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Calculations_user_id",
+                table: "Calculations",
+                column: "user_id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Patients_department_id1",
+                table: "Patients",
+                column: "department_id1");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -210,10 +323,22 @@ namespace CalcIT.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "AuditTrails");
+
+            migrationBuilder.DropTable(
+                name: "Calculations");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Patients");
+
+            migrationBuilder.DropTable(
+                name: "Departmens");
         }
     }
 }
