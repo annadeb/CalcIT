@@ -17,6 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using CalcIt.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CalcIT.Controllers
 {
@@ -163,8 +164,9 @@ namespace CalcIT.Controllers
 
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, false);
             string[] userInfo = { info.Principal.FindFirst(ClaimTypes.Name).Value, info.Principal.FindFirst(ClaimTypes.Email).Value };
+            var pUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == userInfo[1]);
             if (result.Succeeded)
-                return await GenerateJwtToken(userInfo[1], await _userManager.GetUserAsync(info.Principal));
+                return await GenerateJwtToken(userInfo[1], pUser);
             else
             {
                 var user = new ApplicationUser
