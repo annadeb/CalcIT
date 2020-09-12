@@ -18,6 +18,9 @@ import { RegistrationComponent } from './registration/registration.component';
 import { TokenInterceptor } from './common/tokenInterceptor';
 import { AuthService } from './common/authService';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { WaitingSpinner } from './common/waitingSpinner';
+import { ModalModule } from './modal/modal.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,32 +30,36 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
     FetchDataComponent,
     DepartmentsComponent,
     PatientsComponent,
-   PatientComponent,
-   ResultsComponent,
-   BodyMassIndexComponent,
-   RegistrationComponent,
-   AdminPanelComponent,
-  ],
+    PatientComponent,
+    ResultsComponent,
+    BodyMassIndexComponent,
+    RegistrationComponent,
+    AdminPanelComponent,
+    WaitingSpinner  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
     FormsModule,
+    ModalModule, 
     RouterModule.forRoot([
       { path: '', component: LoginComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
       { path: 'department', component: DepartmentsComponent },
       { path: 'patients/:department_id', component: PatientsComponent },
-     { path: 'patient/:patient_id', component: PatientComponent },
-     { path: 'results/:patient_id', component: ResultsComponent },
-     { path: 'body-mass-index/:patient_id', component: BodyMassIndexComponent },
-     {path:'registration',component:RegistrationComponent},
-     {path:'admin-panel',component:AdminPanelComponent}
+      { path: 'patient/:patient_id', component: PatientComponent },
+      { path: 'results/:patient_id', component: ResultsComponent },
+      { path: 'body-mass-index/:patient_id', component: BodyMassIndexComponent },
+      { path: 'registration', component: RegistrationComponent },
+      { path: 'admin-panel', component: AdminPanelComponent },
+      {path:'waiting-spinner',component:WaitingSpinner}
     ])
   ],
-  providers: [{provide: HTTP_INTERCEPTORS,
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi: true},AuthService],
+    multi: true
+  }, AuthService,{provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: { appearance: 'fill' } } ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
