@@ -62,7 +62,7 @@ export class BodyMassIndexComponent  {
       object[key].push(value);
   });
   var json = JSON.stringify(object);*/
-    var body = "\{\"calculation_data\": \"waga: "+this.weight+", wzrost: "+this.height+"\", \"result\": \""+((Math.round((this.weight/(this.height*this.height))*100))/100).toString()+"\", \"patient_id\": "+this.patient_id+",\"calculation_date\":\""+new Date().toISOString()+"\",\"calculation_type\":\"BMI\",\"user_id\":\""+this.user_id+"\"\}";
+    var body = "\{\"calculation_data\": \"waga: "+this.weight+"kg, wzrost: "+this.height+"m\", \"result\": \""+((Math.round((this.weight/(this.height*this.height))*100))/100).toString()+"\", \"patient_id\": "+this.patient_id+",\"calculation_date\":\""+new Date().toISOString()+"\",\"calculation_type\":\"BMI\",\"user_id\":\""+this.user_id+"\"\}";
 
    const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

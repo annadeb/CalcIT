@@ -18,6 +18,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { TokenInterceptor } from './common/tokenInterceptor';
 import { AuthService } from './common/authService';
 import { AdminPanelComponent } from './admin-panel/admin-panel.component';
+import { ChildrenDosesComponent } from './children-doses/children-doses.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,6 +33,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
    BodyMassIndexComponent,
    RegistrationComponent,
    AdminPanelComponent,
+   ChildrenDosesComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -46,6 +48,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
      { path: 'patient/:patient_id', component: PatientComponent },
      { path: 'results/:patient_id', component: ResultsComponent },
      { path: 'body-mass-index/:patient_id', component: BodyMassIndexComponent },
+     { path: 'children-doses/:patient_id', component: ChildrenDosesComponent },
      {path:'registration',component:RegistrationComponent},
      {path:'admin-panel',component:AdminPanelComponent}
     ])
