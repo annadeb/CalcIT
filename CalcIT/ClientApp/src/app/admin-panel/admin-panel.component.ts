@@ -34,11 +34,14 @@ export class AdminPanelComponent{
   }
   public submit(id: number) {
     console.log(this.selectedOption);
+    var sel = document.getElementById(id.toString()) as HTMLSelectElement;
+var text= sel.options[sel.selectedIndex].text;
+console.log(text)
     console.log(id);
     const httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     }
-      this.http.post<any>('api/admin/SpecifyUserRole?userId='+id+'&role='+this.selectedOption, JSON, httpOptions).subscribe(
+      this.http.post<any>('api/admin/SpecifyUserRole?userId='+id+'&role='+text, JSON, httpOptions).subscribe(
         (res) => {  if(res.status==200){alert('Przypisanie roli przebiegło pomyślnie');} 
         else{alert('Coś poszło nie tak. Sprawdź w logach'), console.log(res)}},
           error => {  if(error.status==200){alert('Przypisanie roli przebiegło pomyślnie');} 

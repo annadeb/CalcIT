@@ -1,4 +1,5 @@
 <h1>Logowanie</h1>
+
    <div class="card card-login mx-auto" style="width: 50vh;">
         <div class="card-body">
             <form>
@@ -33,6 +34,21 @@
             <div class="text-center">
                 <a class="d-block small mt-3" [routerLink]="['/registration']">Register an Account</a>
                 <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                Lub zaloguj się za pomocą:
+           <!-- <a [routerLink]="['/waiting-spinner']" > -->
+            <div>
+                 <button class="btn btn-outline-primary" (click)="openModal('custom-modal-2')"><img src={{imgG}} width="18"alt="G"/>oogle</button>
             </div>
-        </div>
+                       
+            <jw-modal id="custom-modal-2" >
+                <object data="https://localhost:44353/api/Account/Google" width="500" height="600">
+                    <embed src="https://localhost:44353/api/Account/Google" width="500" height="600"/>
+                </object>
+                
+                <button (click)="closeModal('custom-modal-2');">Close</button>
+            </jw-modal>       
+                 <button class="btn btn-outline-primary" target="_top" (click)="onLoginG($event)"><img src={{imgG}} width="18"alt="G"/>oogle</button>
+        <!-- </a>  -->
+            </div>
+                 </div>
     </div>

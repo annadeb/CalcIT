@@ -17,11 +17,11 @@
       <td>{{user.userName}}</td>
       <td>{{user.Status}}</td>
       <td>
-        <select  [(ngModel)]="selectedOption" class="form-control" id="statusSelect" name="Status">
+        <select   class="form-control" id={{user.id}} name="Status">
           <option *ngFor="let o of options">
            {{o.name}}
           </option>
-        </select> 
+        </select>
       </td>
       <td>
         <input type="submit" (click)="submit(user.id)" value="Zatwierdź" class="btn btn-outline-primary" />
