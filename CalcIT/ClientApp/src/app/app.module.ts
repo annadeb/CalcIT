@@ -21,6 +21,7 @@ import { AdminPanelComponent } from './admin-panel/admin-panel.component';
 import { MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
 import { WaitingSpinner } from './common/waitingSpinner';
 import { ModalModule } from './modal/modal.module';
+import { AuditTrial } from './audit-trial/audit-trial.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -35,7 +36,8 @@ import { ModalModule } from './modal/modal.module';
     BodyMassIndexComponent,
     RegistrationComponent,
     AdminPanelComponent,
-    WaitingSpinner  ],
+    WaitingSpinner,
+  AuditTrial  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -52,7 +54,8 @@ import { ModalModule } from './modal/modal.module';
       { path: 'body-mass-index/:patient_id', component: BodyMassIndexComponent },
       { path: 'registration', component: RegistrationComponent },
       { path: 'admin-panel', component: AdminPanelComponent },
-      {path:'waiting-spinner',component:WaitingSpinner}
+      {path:'waiting-spinner',component:WaitingSpinner},
+      {path:'audit-trial', component:AuditTrial}
     ])
   ],
   providers: [{
