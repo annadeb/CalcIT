@@ -18,7 +18,7 @@ constructor(private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl:
         error => { console.log(error)        });
     }
     
-   // setInterval(opensnack, 1000);
+    setInterval(opensnack, 1000);
   }
   }
   

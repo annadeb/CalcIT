@@ -1,6 +1,6 @@
 import { Component,Inject } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-department',
@@ -10,11 +10,11 @@ export class DepartmentsComponent {
   
   Departments: Department[] = [];
   token:string='';
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private activatedRoute: ActivatedRoute ) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private activatedRoute: ActivatedRoute,private route:Router ) {
 
     http.get<Department[]>('api/departments/get').subscribe(result => {
       this.Departments = result;
-    }, error => console.error(error));
+    }, error => {if(error.status===403){this.route.navigate(['forbidden-view']);};console.error(error)});
   }
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
