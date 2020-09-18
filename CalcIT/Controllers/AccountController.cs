@@ -121,8 +121,12 @@ namespace CalcIT.Controllers
                 expires: expires,
                 signingCredentials: creds
             );
-
-            return new JwtSecurityTokenHandler().WriteToken(token);
+            var tokenUserId = new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                userid = user.Id
+        };
+            return tokenUserId;/* new JwtSecurityTokenHandler().WriteToken(token);*/
         }
 
         public class LoginDto

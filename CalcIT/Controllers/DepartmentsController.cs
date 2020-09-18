@@ -34,41 +34,8 @@ namespace CalcIT.Controllers
 
         public IEnumerable<Department> Get()
         {   
-           //using (_context)
-           // {
-           //     var dep = new List<Department>()
-           //     {
-           //              new Department {name = "Chirurgia"},
-           //              new Department {name = "Pulmonologia"},
-           //              new Department { name = "Ortopedia" },
-           //              new Department { name = "SOR" },
-           //              new Department { name = "Kardiologia" },
-           //     };
-           //     _context.Departmens.AddRange(dep);
-           //     _context.SaveChanges();
-           // }
             return _context.Departmens.ToList();
         }
-        // GET: api/Departments/5
-        //[HttpGet(Name = "Get_Departments")]
-        //public async Task<ActionResult<IEnumerable<Department>>> Get()
-        //{
-        //    //using (_context)
-        //    //{
-        //    //    var dep = new List<Department>()
-        //    //    {
-        //    //             new Department {name = "Chirurgia"},
-        //    //             new Department {name = "Pulmonologia"},
-        //    //             new Department { name = "Ortopedia" },
-        //    //             new Department { name = "SOR" },
-        //    //             new Department { name = "Kardiologia" },
-        //    //    };
-        //    //   await _context.Departmens.AddRangeAsync(dep);
-        //    //   await _context.SaveChangesAsync();
-        //    //}
-        //   var deps= await _context.Departmens.ToListAsync();
-        //    return deps;
-        //}
 
         // POST: api/Departments
         [HttpPost]
