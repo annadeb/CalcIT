@@ -22,12 +22,12 @@ export class RegistrationComponent implements OnInit {
     formData.append('Password', this.password);
     this.httpClient.post<any>('api/account/register', formData).subscribe(
       response => {
-        if (response.status == 200) { console.log(response); alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl(''); }
-        else { alert('Niepoprawne dane. Spróbuj jeszcze raz.'); console.log(response) }
+
+        alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania');
+        this.route.navigateByUrl('');
       },
       error => {
-        if (error.status == 200) { console.log(error); alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl(''); }
-        else { alert('Niepoprawne dane. Spróbuj jeszcze raz.'); console.log(error) }
+        alert('Niepoprawne dane. Spróbuj jeszcze raz.');
       });
 
   }

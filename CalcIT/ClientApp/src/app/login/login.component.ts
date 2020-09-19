@@ -28,11 +28,23 @@ export class LoginComponent {
         // if (response.status === null) {
         console.log(response);
         localStorage.setItem('token', response.token);
-        localStorage.setItem('user_id',response.user_id);
+        localStorage.setItem('userid',response.userid);
         this.route.navigate(['department']);
 
-        // }
-        // else { alert('Niepoprawne dane. Spróbuj jeszcze raz.'); console.log(response) };
+  
+        // this.httpClient.get<UserRole>('api/admin/GetUserRoles?userId=' + response.userid).subscribe(role => {
+        //   if(role.roles.result.indexOf('Admin')===0){
+        //     this.route.navigate(['admin-view']);
+        //   }
+        //   if(role.roles.result.indexOf('NotActive')===0){
+        //     this.route.navigate(['forbidden-view']);
+        //   }
+
+        //   if(role.roles.result.indexOf('Doctor')===0){
+        //     this.route.navigate(['department']);
+        //   }
+        // }, error => console.error(error));
+        
       },
       error => {
         // if (error.status === null) {
@@ -53,7 +65,6 @@ export class LoginComponent {
   }
   onKeyE(event: any) {
     this.email = event.target.value;
-    console.log(this.email)
   }
   onKeyP(event: any) {
     this.password = event.target.value;
@@ -66,4 +77,11 @@ export class LoginComponent {
   closeModal(id: string) {
     this.modalService.close(id);
   }
+}
+interface UserRole {
+  user: string;
+  roles: Roles;
+};
+interface Roles {
+  result: string[];
 }
