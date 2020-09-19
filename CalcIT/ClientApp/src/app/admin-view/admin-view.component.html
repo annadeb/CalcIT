@@ -1,3 +1,11 @@
-<div> admin view </div>
-<button> Zarządzanie rolami</button>
-<button>Audyt</button>
+<h1> Panel administratora </h1>
+<div className="container" >
+    <!-- <a class="nav-link text-dark" 
+    > -->
+    <a class="nav-link text-dark" [routerLink]="['/admin-panel']">
+    <input value="Zarządzanie rolami" class="btn btn-outline-primary" /> </a>
+    <a class="nav-link text-dark" [routerLink]="['/audit-trial']">
+    <input value="Audyt" class="btn btn-outline-primary" /></a>
+
+    <!-- </a> -->
+</div>
