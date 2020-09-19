@@ -10,7 +10,7 @@
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "target": "es2015",
-    "skipLibCheck": true,
+    "skipLibCheck": true, 
     "typeRoots": [
       "node_modules/@types"
     ],

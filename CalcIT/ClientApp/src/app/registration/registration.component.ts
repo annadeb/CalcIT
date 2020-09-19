@@ -22,7 +22,7 @@ constructor( private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl
    formData.append('Password', this.password);
 this.httpClient.post<any>('api/account/register', formData).subscribe(
 response => {  if(response.status==200){alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl('');} 
-else{alert('Niepoprawne dane. Spróbuj jeszcze raz.')}},
+else{alert('Niepoprawne dane. Spróbuj jeszcze raz.'); console.log(response)}},
   error => {  if(error.status==200){alert('Rejestracja przebiegła pomyślnie. Przejdź do logowania'); this.route.navigateByUrl('');} 
   else{alert('Niepoprawne dane. Spróbuj jeszcze raz.'); console.log(error)}
   });

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import {Component, Inject} from '@angular/core';
 import { Router } from '@angular/router';
+declare var require: any
 
 @Component({
     selector: 'forbbiden-view',
