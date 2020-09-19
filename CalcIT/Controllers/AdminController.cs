@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.AccessControl;
+using System.Security.Claims;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using AutoMapper.Configuration;
 using CalcIt.Models;
 using CalcIT.Data;
+using IdentityServer4.Extensions;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -74,6 +76,7 @@ namespace CalcIT.Controllers
             {
                 return NotFound("Such role doesn't exist");
             }
+            await _userManager.RemoveFromRoleAsync(user, "NotActive");
             await _userManager.AddToRoleAsync(user, role);
             return Ok("Role's been added to the user");
         }
