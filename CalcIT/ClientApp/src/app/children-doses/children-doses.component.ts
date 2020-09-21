@@ -13,12 +13,13 @@ export class ChildrenDosesComponent implements OnInit {
   weight: number=5;
    dose: number=0.05;
    patient_id:number;
-   user_id:string="8d440e1c-afe5-42bd-91f6-ac6a74f90c9e";
+   user_id:string;
    Doses=[];
    http: HttpClient
    constructor( http: HttpClient, @Inject('BASE_URL') baseUrl: string, private activatedRoute: ActivatedRoute ) { 
      this.http=http;
      this.patient_id=activatedRoute.snapshot.params['patient_id'];
+     this.user_id=localStorage.getItem('userid');
      //this.user_id=activatedRoute.snapshot.params['user_id'];
      console.log(this.patient_id);
      //console.log(this.user_id);

@@ -24,7 +24,7 @@ patient_id: any;
 interface Calculation {
   calculation_id: number;
   patient_id: number;
-  doctor_id: number;
+  user_id: number;
   calculation_date: Date;
   calculation_data: string;
   calculation_type: string;
