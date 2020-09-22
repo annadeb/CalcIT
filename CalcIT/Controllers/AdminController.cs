@@ -40,13 +40,13 @@ namespace CalcIT.Controllers
             _roleManager = roleManager;
             _context = context;
         }
-
+       
         [HttpGet]
         public async Task<object> GetUsers()
         {
             return await _userManager.Users.ToListAsync();
         }
-
+        [AllowAnonymous]
         [HttpGet]
         public async Task<object> GetUserRoles(string userId)
         {
@@ -71,12 +71,13 @@ namespace CalcIT.Controllers
             {
                 return NotFound("Such user doesn't exist");
             }
+            var roles = await _userManager.GetRolesAsync(user);
             var ifRoleExists = _roleManager.RoleExistsAsync(role);
             if (!ifRoleExists.Result)
             {
                 return NotFound("Such role doesn't exist");
             }
-            await _userManager.RemoveFromRoleAsync(user, "NotActive");
+            await _userManager.RemoveFromRolesAsync(user, roles.ToArray());
             await _userManager.AddToRoleAsync(user, role);
             return Ok("Role's been added to the user");
         }
