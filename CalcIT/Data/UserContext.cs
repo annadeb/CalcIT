@@ -16,7 +16,7 @@ namespace CalcIT.Data
         }
         //public DbSet<Doctor> Doctors { get; set; }
         public DbSet<Department> Departmens { get; set; }
-        public DbSet<Patient> Patients { get; set; }
+        public DbSet<Patient> Patients{ get; set; }
         public DbSet<Calculation> Calculations { get; set; }
         public DbSet<AuditTrail> AuditTrails { get; set; }
 
