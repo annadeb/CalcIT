@@ -27,7 +27,9 @@ export class ChildrenDosesComponent implements OnInit {
    ngOnInit() {
      this.activatedRoute.queryParams.subscribe((params) => {
          console.log(params['token']); this.token=params['token'];
-     });}
+     });
+     localStorage.setItem('display-button','true');
+    }
    public addWeight(weight:number){
      this.weight=weight;
    }

@@ -19,7 +19,8 @@ patient_id: any;
     console.log('api/Patients/Get_PatientResults/' + route.snapshot.params['patient_id'])
   }, error => console.error(route.snapshot.params['patient_id']));
   }
-
+ngOnInit(){    localStorage.setItem('display-button','true');
+}
 }
 interface Calculation {
   calculation_id: number;

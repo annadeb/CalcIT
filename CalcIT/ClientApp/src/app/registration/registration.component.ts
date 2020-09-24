@@ -15,6 +15,7 @@ export class RegistrationComponent implements OnInit {
   }
   ngOnInit(){
     localStorage.clear();
+    localStorage.setItem('display-button','false');
   }
   onSave() {
     const formData = new FormData();

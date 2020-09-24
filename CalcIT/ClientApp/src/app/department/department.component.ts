@@ -27,6 +27,8 @@ export class DepartmentsComponent {
       this.token = params['token'];
     });
     console.log(localStorage.getItem('userid'))
+    localStorage.setItem('display-button','true');
+
   }
 }
 interface Department {

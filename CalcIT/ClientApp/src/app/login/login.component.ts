@@ -48,6 +48,7 @@ export class LoginComponent {
 
 ngOnInit(){
   localStorage.clear();
+  localStorage.setItem('display-button','false');
 }
   onLoginG() {
     window.open('https://localhost:44353/api/Account/Google', '_blank');

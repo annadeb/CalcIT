@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'; 
 declare var require: any
 @Component({
   selector: 'app-nav-menu',
@@ -7,7 +7,16 @@ declare var require: any
 })
 export class NavMenuComponent {
   isExpanded = false;
- 
+  get user(): any {
+    let temp;
+    console.log(localStorage.getItem('display-button'))
+    if(localStorage.getItem('display-button')==='true'){temp='Wyloguj'}
+    else{temp=''}
+    return temp;
+}
+ ngOnInit(){
+   console.log('init navbar')
+ }
   collapse() {
     this.isExpanded = false;
   }

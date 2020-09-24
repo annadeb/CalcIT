@@ -31,6 +31,7 @@ export class AdminPanelComponent{
     this.activatedRoute.queryParams.subscribe((params) => {
         console.log(params['token']); this.token=params['token'];
     });
+    localStorage.setItem('display-button','true');
   }
   public submit(id: number) {
     console.log(this.selectedOption);
