@@ -13,8 +13,8 @@ export class RegistrationComponent implements OnInit {
   password: '';
   constructor(private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string, private route: Router) {
   }
-  ngOnInit() {
-
+  ngOnInit(){
+    localStorage.clear();
   }
   onSave() {
     const formData = new FormData();
@@ -31,6 +31,7 @@ export class RegistrationComponent implements OnInit {
       });
 
   }
+  
   onKeyE(event: any) {
     this.email = event.target.value;
   }

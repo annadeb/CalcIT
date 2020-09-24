@@ -46,7 +46,9 @@ export class LoginComponent {
       });
   }
 
-
+ngOnInit(){
+  localStorage.clear();
+}
   onLoginG() {
     window.open('https://localhost:44353/api/Account/Google', '_blank');
   }
