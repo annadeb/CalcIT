@@ -31,16 +31,33 @@ namespace CalcIT.Controllers
         }
         //GET: api/Departments
        [HttpGet]
-
-        public IEnumerable<Department> Get()
-        {   
-            return _context.Departmens.ToList();
+        public async Task<IEnumerable<Department>> GetDepartments()
+        {
+            var departments = await _context.Departmens.ToListAsync();
+            return departments;
         }
 
         // POST: api/Departments
         [HttpPost]
-        public void Post([FromBody] string value)
+        public async Task<IActionResult> CreateDepartment([FromBody] Department model)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest("Not a valid model");
+            }
+            else
+            {
+                using (_context)
+                {
+                    _context.Departmens.Add(new Department()
+                    {
+                        name = model.name,
+                    });
+
+                    await _context.SaveChangesAsync();
+                };
+                return Ok("Department's been added");
+            }
         }
 
         // PUT: api/Departments/5
