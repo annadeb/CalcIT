@@ -25,6 +25,7 @@ import { ModalModule } from './modal/modal.module';
 import { AuditTrial } from './audit-trial/audit-trial.component';
 import { ForbiddenView } from './forbidden-view/forbidden-view.component';
 import { AdminView } from './admin-view/admin-view.component';
+import { PatientAddComponent } from './patient-add/patient-add.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,7 +44,8 @@ import { AdminView } from './admin-view/admin-view.component';
     WaitingSpinner,
   AuditTrial,
 ForbiddenView,
-AdminView  ],
+AdminView,
+PatientAddComponent  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -64,8 +66,8 @@ AdminView  ],
       {path:'waiting-spinner',component:WaitingSpinner},
       {path:'audit-trial', component:AuditTrial},
       {path:'forbidden-view', component:ForbiddenView},
-      {path:'admin-view', component:AdminView}
-
+      {path:'admin-view', component:AdminView},
+      {path:'patient-add/:department_id', component:PatientAddComponent}
     ])
   ],
   providers: [{

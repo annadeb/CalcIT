@@ -31,10 +31,9 @@ namespace CalcIT.Controllers
         }
         //GET: api/Departments
        [HttpGet]
-        public async Task<IEnumerable<Department>> GetDepartments()
+        public IEnumerable<Department> Get()
         {
-            var departments = await _context.Departmens.ToListAsync();
-            return departments;
+            return _context.Departmens.ToList();
         }
 
         // POST: api/Departments

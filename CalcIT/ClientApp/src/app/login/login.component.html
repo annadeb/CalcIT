@@ -5,14 +5,14 @@
             <form>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input asp-for="Email" class ="form-control" (keyup)="onKeyE($event)" placeholder="Email address" required="required" autofocus="autofocus">
-                        <label for="inputEmail">Email address</label>
+                        <input asp-for="Email" class ="form-control" (keyup)="onKeyE($event)" placeholder="Adres email" required="required" autofocus="autofocus">
+                        <label for="inputEmail">Adres email</label>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="form-label-group">
-                        <input asp-for="Password" class="form-control" (keyup)="onKeyP($event)" placeholder="Password" required="required">
-                        <label for="inputPassword">Password</label>
+                        <input asp-for="Password" class="form-control" (keyup)="onKeyP($event)" placeholder="Hasło" required="required">
+                        <label for="inputPassword">Hasło</label>
                     </div>
                 </div>
 
@@ -20,7 +20,7 @@
                     <div class="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me">
-                            Remember Password
+                            Zapamiętaj hasło
                         </label>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
                 </div>
                 </form>
             <div class="text-center">
-                <a class="d-block small mt-3" [routerLink]="['/registration']">Register an Account</a>
-                <a class="d-block small" href="forgot-password.html">Forgot Password?</a>
+                <a class="d-block small mt-3" [routerLink]="['/registration']">Zarejestruj się</a>
+                <!--a class="d-block small" href="forgot-password.html">Nie pamiętasz hasła?</!--a-->
                 Lub zaloguj się za pomocą:
             <div>
                  <button class="btn btn-outline-primary" (click)="openModal('custom-modal-2')"><img src={{imgG}} width="18"alt="G"/>oogle</button>
@@ -44,7 +44,7 @@
                     <embed src="https://localhost:44353/api/Account/Google" width="500" height="600"/>
                 </object>
                 
-                <button (click)="closeModal('custom-modal-2');">Close</button>
+                <button (click)="closeModal('custom-modal-2');">Zamknij</button>
             </jw-modal>       
             <a [routerLink]="['/waiting-spinner']" >
 

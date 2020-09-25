@@ -1,0 +1,37 @@
+<div class="form" style="text-align: center;">
+    <h1>Dodawanie pacjenta</h1>
+    <label>
+      
+      <div style="text-align: center;">Imię:
+      <input #name type="text" (keyup)="addName(name.value)" Name="name"></div>
+    </label>
+    <br>
+    <label>
+        <div style="text-align: center;">
+      Nazwisko:
+      <input #surname type="text" (keyup)="addSurName(surname.value)" Name="surname"></div>
+    </label>
+  
+    <br>
+    <label>
+      Data urodzenia:
+      <input #birthdate type="date" (input)="addBirthDate(birthdate.value)" Name="birthdate">
+    </label>
+    <br>
+    <label>
+      Pesel:
+      <input #pesel type="text" (keyup)="addPesel(pesel.value)" Name="pesel">
+    </label>
+    <br>
+    <label>
+      Waga:
+      <input #weight type="number" (keyup)="addWeight(weight.value)" Name="weight">
+    </label>
+    <br>
+    <label>
+      Wzrost:
+      <input #height type="number" (keyup)="addHeight(height.value)" Name="height">
+    </label>
+    <br>
+  <button class="btn btn-info" type="submit" (click)="onSubmit()">Dodaj</button>
+</div>

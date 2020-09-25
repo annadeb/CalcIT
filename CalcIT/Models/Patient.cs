@@ -21,7 +21,6 @@ namespace CalcIt.Models
         public string name { get; set; }
         [StringLength(50)]
         public string surname { get; set; }
-        [StringLength(50)]
         public double weight { get; set; }
         public double height { get; set; }
 
