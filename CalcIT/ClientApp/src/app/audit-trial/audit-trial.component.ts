@@ -21,7 +21,6 @@ this.http=http;
        await this.http.get<Audit[]>('api/admin/getfullAudit').subscribe(result => {
           this.Audit = result.reverse(); console.log(result)
         }, error => console.error(error));
-      // this.Audit=this.Audit.reverse();
      await this.http.get<User[]>('api/admin/getUsers').subscribe(result => {
         this.Users = result; console.log(result)
       }, error => console.error(error));

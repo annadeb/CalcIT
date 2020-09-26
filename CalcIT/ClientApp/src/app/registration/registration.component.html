@@ -6,8 +6,8 @@
                     <!-- <div class="form-label-group">
                         <input asp-for="Email" (keyup)="onKeyE($event)" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" class ="form-control" placeholder="Email address" required="required" autofocus="autofocus">
                     </div> -->
-                    <input asp-for="Email" placeholder="Email address" (keyup)="onKeyE($event)" required="required" autofocus="autofocus" type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel">
-                    <label for="inputEmail">Email address</label>
+                    <input asp-for="Email" placeholder="Adres E-mail" (keyup)="onKeyE($event)" required="required" autofocus="autofocus" type="text" class="form-control" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" id="email"name="email" ngModel #emailref="ngModel">
+                    <label for="inputEmail">Adres E-mail</label>
                     <div *ngIf="emailref.errors &&(emailref.touched || emailref.dirty)" class ="alert alert-danger">
                      <div [hidden]="!emailref.errors?.pattern">
                        Błędny e-mail
@@ -17,8 +17,8 @@
                 
                 <div class="form-group">
                     <!-- <div class="form-label-group"> -->
-                        <input asp-for="Password" (keyup)="onKeyP($event)"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}" class="form-control" placeholder="Password" required="required" id="password"name="password" ngModel #passwordref="ngModel">
-                        <label for="inputPassword">Password</label>
+                        <input asp-for="Hasło" (keyup)="onKeyP($event)"  pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&].{8,}" class="form-control" placeholder="Password" required="required" id="password"name="password" ngModel #passwordref="ngModel">
+                        <label for="inputPassword">Hasło</label>
                         <div *ngIf="passwordref.errors &&(passwordref.touched || passwordref.dirty)" class ="alert alert-danger">
                             <div [hidden]="!passwordref.errors?.pattern">
                               Błędne hasło
@@ -28,17 +28,17 @@
                 </div>
 
                 <div class="form-group">
-                    <div class="checkbox">
+                    <!-- <div class="checkbox">
                         <label>
                             <input type="checkbox" value="remember-me">
-                            Remember Password
+                            Pami
                         </label>
-                    </div>
+                    </div> -->
                 </div>
                 <div style="text-align:center">
                     <!-- <a class="nav-link text-dark" [routerLink]="['/login']"
                     > -->
-                    <input type="submit" (click)="onSave($event)" value="Sign up" class="btn btn-outline-primary" />
+                    <input type="submit" (click)="onSave($event)" value="Zarejestruj" class="btn btn-outline-primary" />
                     <!-- </a> -->
                 </div>
                 </form>
