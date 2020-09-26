@@ -19,9 +19,9 @@ this.http=http;
     }
    async ngOnInit(): Promise<void> {
        await this.http.get<Audit[]>('api/admin/getfullAudit').subscribe(result => {
-          this.Audit = result; console.log(result)
+          this.Audit = result.reverse(); console.log(result)
         }, error => console.error(error));
-      
+      // this.Audit=this.Audit.reverse();
      await this.http.get<User[]>('api/admin/getUsers').subscribe(result => {
         this.Users = result; console.log(result)
       }, error => console.error(error));
@@ -46,10 +46,7 @@ this.http=http;
             localStorage.setItem('display-button','true');
             console.log(this.Users_name[1])
         }
-        
-    // OnInit(){
-      
-    // }
+
   }
   interface Audit{
       at_id:Number,
