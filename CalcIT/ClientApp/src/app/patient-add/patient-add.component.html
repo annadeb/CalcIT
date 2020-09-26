@@ -1,37 +1,54 @@
+<h1>Dodawanie pacjenta</h1>
 <div class="form" style="text-align: center;">
-    <h1>Dodawanie pacjenta</h1>
-    <label>
-      
-      <div style="text-align: center;">Imię:
-      <input #name type="text" (keyup)="addName(name.value)" Name="name"></div>
-    </label>
-    <br>
-    <label>
-        <div style="text-align: center;">
-      Nazwisko:
-      <input #surname type="text" (keyup)="addSurName(surname.value)" Name="surname"></div>
-    </label>
-  
-    <br>
-    <label>
-      Data urodzenia:
-      <input #birthdate type="date" (input)="addBirthDate(birthdate.value)" Name="birthdate">
-    </label>
-    <br>
-    <label>
-      Pesel:
-      <input #pesel type="text" (keyup)="addPesel(pesel.value)" Name="pesel">
-    </label>
-    <br>
-    <label>
-      Waga:
-      <input #weight type="number" (keyup)="addWeight(weight.value)" Name="weight">
-    </label>
-    <br>
-    <label>
-      Wzrost:
-      <input #height type="number" (keyup)="addHeight(height.value)" Name="height">
-    </label>
-    <br>
-  <button class="btn btn-info" type="submit" (click)="onSubmit()">Dodaj</button>
-</div>
+  <!-- <label> -->
+  <div class="card card-login mx-auto" style="width: 50vh;">
+    <div class="card-body">
+      <form>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input #name type="text" class="form-control" placeholder="Imię" (keyup)="addName(name.value)" Name="name">
+            <!-- <label>Imię</label> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input #surname type="text" class="form-control" placeholder="Nazwisko" (keyup)="addSurName(surname.value)"
+              Name="surname">
+            <!-- <label>Nazwisko</label> -->
+
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input #birthdate type="date" class="form-control" (input)="addBirthDate(birthdate.value)" Name="birthdate">
+            <!-- <label for="inputPassword">Data urodzenia/label> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input #pesel type="text" class="form-control" placeholder="Pesel" (keyup)="addPesel(pesel.value)" Name="pesel">
+            <!-- <label for="inputPassword">Pesel</label> -->
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="form-label-group">
+            <input #weight type="number" class="form-control" placeholder="Waga" (keyup)="addWeight(weight.value)" Name="weight">
+            <!-- <label for="inputPassword">Waga</label> -->
+          </div>
+        </div>  <div class="form-group">
+          <div class="form-label-group">
+            <input #height type="number" class="form-control" placeholder="Wzrost" (keyup)="addHeight(height.value)" Name="height">
+            <!-- <label for="inputPassword">Wzrost</label> -->
+          </div>
+        </div>
+        <div style="text-align:center">
+          <a class="nav-link text-dark">
+            <!-- <button class="btn btn-info" type="submit" (click)="onSubmit()">Dodaj</button> -->
+
+            <input type="submit" (click)="onSubmit()" value="Dodaj" class="btn btn-outline-primary" />
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+ 

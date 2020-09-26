@@ -1,6 +1,6 @@
 import { Component,Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-patient',
@@ -12,12 +12,12 @@ export class PatientComponent {
   patient;
     route: any;
     
-  constructor(http: HttpClient, route: ActivatedRoute) {
+  constructor(http: HttpClient, route: ActivatedRoute,private router: Router) {
     http.get<Patient[]>('api/Patients/get_patientInfo/' + route.snapshot.params['patient_id']).subscribe(result => {
       this.Patients = result;
       console.log(result)
       console.log('api/Patients/get_patientInfo/' + route.snapshot.params['patient_id'])
-    }, error => console.error(error));
+    }, error => {console.error(error); router.navigate(['logged-out'])}) ;
   }
 
 }

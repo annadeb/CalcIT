@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-admin-panel',
@@ -12,7 +12,7 @@ export class AdminPanelComponent{
   Users: User[] = [];
   http: HttpClient;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private activatedRoute: ActivatedRoute ) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private activatedRoute: ActivatedRoute, private router: Router) {
     this.http = http;
     http.get<User[]>('api/admin/GetUsers').subscribe(result => {
       this.Users = result;
@@ -20,7 +20,7 @@ export class AdminPanelComponent{
         http.get<UserRole>('api/admin/GetUserRoles?userId='+ this.Users[index].id ).subscribe(role => {
           this.Users[index].Status = role.roles.result.toString();
         }, error => console.error(error));
-    }}, error => console.error(error));
+    }}, error => {console.error(error);router.navigate(['logged-out'])});
     }    
     selectedOption: string;  
     options = [

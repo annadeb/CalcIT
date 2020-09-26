@@ -19,6 +19,7 @@ export class DepartmentsComponent {
       console.log(result);
     }, error => {
       console.error(error)
+      route.navigate(['logged-out']);
     });
   }
   ngOnInit() {

@@ -26,6 +26,7 @@ import { AuditTrial } from './audit-trial/audit-trial.component';
 import { ForbiddenView } from './forbidden-view/forbidden-view.component';
 import { AdminView } from './admin-view/admin-view.component';
 import { PatientAddComponent } from './patient-add/patient-add.component';
+import { LoggedOutView } from './logged-out/logged-out-view.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,7 +46,8 @@ import { PatientAddComponent } from './patient-add/patient-add.component';
   AuditTrial,
 ForbiddenView,
 AdminView,
-PatientAddComponent  ],
+PatientAddComponent,
+LoggedOutView  ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
     HttpClientModule,
@@ -67,7 +69,8 @@ PatientAddComponent  ],
       {path:'audit-trial', component:AuditTrial},
       {path:'forbidden-view', component:ForbiddenView},
       {path:'admin-view', component:AdminView},
-      {path:'patient-add/:department_id', component:PatientAddComponent}
+      {path:'patient-add/:department_id', component:PatientAddComponent},
+      {path:'logged-out',component:LoggedOutView}
     ])
   ],
   providers: [{
