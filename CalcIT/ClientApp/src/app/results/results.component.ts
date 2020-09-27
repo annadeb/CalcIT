@@ -15,6 +15,8 @@ patient_id: any;
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute) { 
   http.get<Calculation[]>('api/Patients/Get_PatientResults/' + route.snapshot.params['patient_id']).subscribe(result => {
     this.Results = result;
+   this.Results.map(res=>{res.calculation_date=res.calculation_date.slice(0, 19).replace("T", " ")})
+
     this.patient_id = route.snapshot.params['patient_id'];
     console.log('api/Patients/Get_PatientResults/' + route.snapshot.params['patient_id'])
   }, error => console.error(route.snapshot.params['patient_id']));
@@ -26,7 +28,7 @@ interface Calculation {
   calculation_id: number;
   patient_id: number;
   user_id: number;
-  calculation_date: Date;
+  calculation_date: string;
   calculation_data: string;
   calculation_type: string;
   result: string;
