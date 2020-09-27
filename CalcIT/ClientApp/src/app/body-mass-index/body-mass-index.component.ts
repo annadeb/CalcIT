@@ -33,6 +33,14 @@ export class BodyMassIndexComponent  {
   }
   public addHeight(height:number){
     this.height=height;
+    if(height.toString().indexOf('.')===1 || height.toString().indexOf(',')===1){
+      this.height=height;
+    } else{
+      this.height=height/100;
+    }
+    console.log(this.height)
+    // console.log(Number.isInteger(height))
+    // console.log(height.toString().indexOf('.'))
   }
   
   public calculate() {
