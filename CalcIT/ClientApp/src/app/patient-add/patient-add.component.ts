@@ -42,7 +42,7 @@ export class PatientAddComponent implements OnInit {
       console.log(this.department_id)
   }
   onSubmit() {
-    var body = "\{\"name\": \""+this.name+"\",\"surname\": \""+this.surname+"\",\"birthdate\": \""+this.birthdate+"\",\"pesel\":"+this.pesel+",\"department_id\":"+this.department_id+",\"weight\": "+this.weight+",\"height\":"+this.height+"\}";
+    var body = "\{\"name\": \""+this.name+"\",\"surname\": \""+this.surname+"\",\"birthdate\": \""+this.birthdate+"\",\"pesel\":"+this.pesel+",\"department_id\":"+this.department_id+"\}";
 
    const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

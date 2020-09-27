@@ -1,7 +1,13 @@
+<a  [routerLink]="['/department']">
+  <input type="submit" value="Powrót" class="btn btn-outline-primary" />
+</a>
+<h1>Wybierz pacjenta</h1>
+<div style="text-align: right;">
+  
+  <a class="nav-link text-dark" [routerLink]="['/patient-add', department_id]">
+    <input type="submit" value="Dodaj pacjenta" class="btn btn-outline-primary" /></a>
 
-<a style="text-align: right;" class="nav-link text-dark" [routerLink]="['/patient-add', department_id]">
-  <input type="submit" value="Dodaj" class="btn btn-outline-primary" /></a>
-  <h1>Wybierz pacjenta</h1>
+</div>
 <table class="table">
   <thead>
     <tr>
@@ -11,14 +17,14 @@
     </tr>
   </thead>
   <tbody>
-    
+
     <tr *ngFor="let patient of Patients; let i=index">
       <td>{{patient.name}}</td>
       <td>{{patient.surname}}</td>
       <td><a class="nav-link text-dark" [routerLink]="['/patient', patient.patient_id]">
-  <input type="submit" value="Wybierz" class="btn btn-outline-primary" />
-</a><td>
+          <input type="submit" value="Wybierz" class="btn btn-outline-primary" />
+        </a>
+      <td>
     </tr>
   </tbody>
 </table>
-

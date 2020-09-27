@@ -1,3 +1,6 @@
+<a [routerLink]="['/patients',department_id]">
+  <input type="submit" value="Powrót" class="btn btn-outline-primary" />
+</a>
 <h1>Dodawanie pacjenta</h1>
 <div class="form" style="text-align: center;">
   <!-- <label> -->
@@ -30,17 +33,18 @@
             <!-- <label for="inputPassword">Pesel</label> -->
           </div>
         </div>
-        <div class="form-group">
+        <!-- <div class="form-group">
           <div class="form-label-group">
             <input #weight type="number" class="form-control" placeholder="Waga" (keyup)="addWeight(weight.value)" Name="weight">
-            <!-- <label for="inputPassword">Waga</label> -->
+            <label for="inputPassword">Waga</label>
           </div>
-        </div>  <div class="form-group">
+        </div> 
+         <div class="form-group">
           <div class="form-label-group">
             <input #height type="number" class="form-control" placeholder="Wzrost" (keyup)="addHeight(height.value)" Name="height">
-            <!-- <label for="inputPassword">Wzrost</label> -->
+            <label for="inputPassword">Wzrost</label>
           </div>
-        </div>
+        </div> -->
         <div style="text-align:center">
           <a class="nav-link text-dark">
             <!-- <button class="btn btn-info" type="submit" (click)="onSubmit()">Dodaj</button> -->
