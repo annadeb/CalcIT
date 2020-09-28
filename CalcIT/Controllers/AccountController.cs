@@ -253,8 +253,8 @@ namespace CalcIT.Controllers
             // new Calculation {calculation_date=DateTime.Today,calculation_type="Kalkulator ciąży",calculation_data="date=20-05-2020;lenght=28",patient_id=1,doctor_id=1,result="date=02-02-2021" }
             //};
             //_context.Calculations.AddRange(calc);
-            var user1 = new ApplicationUser { UserName = "Admin@calcit.pl", Email = "Admin1@calcit.pl" };
-            var user2 = new ApplicationUser { UserName = "Doctor@calcit.pl", Email = "Doctor@calcit.pl" };
+            var user1 = new ApplicationUser { UserName = "admin1@calcit.pl", Email = "admin1@calcit.pl" };
+            var user2 = new ApplicationUser { UserName = "doctor@calcit.pl", Email = "doctor@calcit.pl" };
 
             await _userManager.CreateAsync(user1, "Admin1!2");
             await _userManager.CreateAsync(user2, "Doctor1!2");
