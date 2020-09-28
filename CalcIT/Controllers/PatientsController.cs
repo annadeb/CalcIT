@@ -102,10 +102,10 @@ namespace CalcIT.Controllers
             var departments = await _context.Departmens.ToListAsync();
             return departments;
         }
-        [HttpPost("{patientId}")]
-        public async Task<IActionResult> UpdatePatient([FromBody] Patient model, long patientId)
+        [HttpPost("{id}")]
+        public async Task<IActionResult> UpdatePatient(long id, [FromBody] Patient model)
         {
-            var patient = _context.Patients.FirstOrDefault(x => x.patient_id == patientId);
+            var patient = _context.Patients.FirstOrDefault(x => x.patient_id == id);
             if (patient == null)
             {
                 return NotFound("Such patient doesn't exist.");
@@ -136,7 +136,6 @@ namespace CalcIT.Controllers
             }
         }
 
-        // DELETE: api/ApiWithActions/5
         [HttpDelete("{patientId}")]
         public async Task<IActionResult> DeletePatient(long patientId)
         {
