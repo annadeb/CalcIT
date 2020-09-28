@@ -30,7 +30,6 @@ export class LoginComponent {
         localStorage.setItem('userid',response.userid);
          
         this.httpClient.get<UserRole>('api/admin/GetUserRoles?userId=' + response.userid).subscribe(role => {
-          console.log(role.roles.result[0])
           switch (role.roles.result[0]){
             case 'Admin': {this.route.navigate(['admin-view']); break;}
             case 'NotActive': {this.route.navigate(['forbidden-view']); break;}

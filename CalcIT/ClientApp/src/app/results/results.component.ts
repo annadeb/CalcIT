@@ -18,7 +18,6 @@ export class ResultsComponent {
       this.Results.map(res => { res.calculation_date = res.calculation_date.slice(0, 19).replace("T", " ") })
 
       this.patient_id = route.snapshot.params['patient_id'];
-      console.log('api/Patients/Get_PatientResults/' + route.snapshot.params['patient_id'])
     }, error => console.error(route.snapshot.params['patient_id']));
   }
   ngOnInit() {

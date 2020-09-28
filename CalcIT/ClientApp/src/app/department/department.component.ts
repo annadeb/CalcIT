@@ -14,7 +14,7 @@ export class DepartmentsComponent {
   http: any;
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, private activatedRoute: ActivatedRoute, private route: Router) {
     this.http = http;
-       http.get<Department[]>('api/departments/get').subscribe(result => {
+    http.get<Department[]>('api/departments/get').subscribe(result => {
       this.Departments = result;
       console.log(result);
     }, error => {
@@ -24,11 +24,10 @@ export class DepartmentsComponent {
   }
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
-     
+
       this.token = params['token'];
     });
-    console.log(localStorage.getItem('userid'))
-    localStorage.setItem('display-button','true');
+    localStorage.setItem('display-button', 'true');
 
   }
 }

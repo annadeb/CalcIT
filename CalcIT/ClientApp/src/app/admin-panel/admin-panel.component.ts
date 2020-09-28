@@ -7,8 +7,8 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.css']
 })
-export class AdminPanelComponent{
-  token:string='';
+export class AdminPanelComponent {
+  token: string = '';
   Users: User[] = [];
   http: HttpClient;
 
@@ -17,51 +17,51 @@ export class AdminPanelComponent{
     http.get<User[]>('api/admin/GetUsers').subscribe(result => {
       this.Users = result;
       for (let index = 0; index < this.Users.length; index++) {
-        http.get<UserRole>('api/admin/GetUserRoles?userId='+ this.Users[index].id ).subscribe(role => {
+        http.get<UserRole>('api/admin/GetUserRoles?userId=' + this.Users[index].id).subscribe(role => {
           this.Users[index].Status = role.roles.result.toString();
         }, error => console.error(error));
-    }}, error => {console.error(error);router.navigate(['logged-out'])});
-    }    
-    selectedOption: string;  
-    options = [
-      { name: "NotActive", value: 1 },
-      { name: "Doctor", value: 2 }
-    ]
+      }
+    }, error => { console.error(error); router.navigate(['logged-out']) });
+  }
+  selectedOption: string;
+  options = [
+    { name: "NotActive", value: 1 },
+    { name: "Doctor", value: 2 }
+  ]
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params) => {
-        console.log(params['token']); this.token=params['token'];
+       this.token = params['token'];
     });
-    localStorage.setItem('display-button','true');
+    localStorage.setItem('display-button', 'true');
   }
   public submit(id: number) {
-    console.log(this.selectedOption);
     var sel = document.getElementById(id.toString()) as HTMLSelectElement;
-var text= sel.options[sel.selectedIndex].text;
-console.log(text)
-    console.log(id);
-    const httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+    var text = sel.options[sel.selectedIndex].text;
+        const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     }
-      this.http.post<any>('api/admin/SpecifyUserRole?userId='+id+'&role='+text, JSON, httpOptions).subscribe(
-        (res) => {  if(res.status==200){alert('Przypisanie roli przebiegło pomyślnie');} 
-        else{alert('Coś poszło nie tak. Sprawdź w logach'), console.log(res)}},
-          error => {  if(error.status==200){alert('Przypisanie roli przebiegło pomyślnie');} 
-          else{alert('Coś poszło nie tak. Sprawdź w logach'); console.log(error)}
+    this.http.post<any>('api/admin/SpecifyUserRole?userId=' + id + '&role=' + text, JSON, httpOptions).subscribe(
+      (res) => {
+        if (res.status == 200) { alert('Przypisanie roli przebiegło pomyślnie'); }
+        else { alert('Coś poszło nie tak. Sprawdź w logach'), console.log(res) }
+      },
+      error => {
+        if (error.status == 200) { alert('Przypisanie roli przebiegło pomyślnie'); }
+        else { alert('Coś poszło nie tak. Sprawdź w logach'); console.error(error) }
       });
-      window.location.reload();
+    window.location.reload();
   }
 }
 interface User {
   id: string;
   userName: string;
-   Status: string;
- }
- interface UserRole
- {
-    user: string;
-    roles: Roles;
- };
+  Status: string;
+}
+interface UserRole {
+  user: string;
+  roles: Roles;
+};
 
- interface Roles{
-result: string[];
- }
+interface Roles {
+  result: string[];
+}

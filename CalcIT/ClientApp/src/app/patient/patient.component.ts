@@ -1,4 +1,4 @@
-import { Component,Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -10,20 +10,19 @@ export class PatientComponent {
 
   Patients: Patient[] = [];
   patient;
-    route: any;
-    
-  constructor(http: HttpClient, route: ActivatedRoute,private router: Router) {
+  route: any;
+
+  constructor(http: HttpClient, route: ActivatedRoute, private router: Router) {
     http.get<Patient[]>('api/Patients/get_patientInfo/' + route.snapshot.params['patient_id']).subscribe(result => {
       this.Patients = result;
       console.log(result)
-      console.log('api/Patients/get_patientInfo/' + route.snapshot.params['patient_id'])
-    }, error => {console.error(error); router.navigate(['logged-out'])}) ;
+    }, error => { console.error(error); router.navigate(['logged-out']) });
   }
 
 }
 
 interface Patient {
- patient_id: number;
+  patient_id: number;
   PESEL: number;
   Name: string;
   Surname: string;

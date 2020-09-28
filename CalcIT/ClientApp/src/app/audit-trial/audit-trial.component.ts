@@ -12,21 +12,21 @@ export class AuditTrial implements OnInit {
   Users: User[] = [];
   Users_name: string[] = [];
   http: HttpClient;
-  router:Router;
+  router: Router;
 
   constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, router: Router) {
     this.http = http;
-this.router=router
-    console.log(this.Users_name)
+    this.router = router
   }
   async ngOnInit(): Promise<void> {
     await this.http.get<Audit[]>('api/admin/getfullAudit').subscribe(result => {
-      this.Audit = result.reverse(); console.log(result)
-    }, error => { console.error(error); this.router.navigate(['logged-out'])});
+      this.Audit = result.reverse(); 
+      console.log(result)
+    }, error => { console.error(error); this.router.navigate(['logged-out']) });
     await this.http.get<User[]>('api/admin/getUsers').subscribe(result => {
-      this.Users = result; console.log(result)
+      this.Users = result; 
+      console.log(result);
     }, error => console.error(error));
-    console.log(this.Audit)
 
   }
 
@@ -44,7 +44,6 @@ this.router=router
       }
     }
     localStorage.setItem('display-button', 'true');
-    console.log(this.Users_name[1])
   }
 
 }
