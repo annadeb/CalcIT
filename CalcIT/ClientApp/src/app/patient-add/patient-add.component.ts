@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { Component, Inject, OnInit } from '@angular/core';
 import { ControlContainer, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AppComponent } from '../app.component';
 
 /*@NgModule({
@@ -27,7 +27,7 @@ export class PatientAddComponent implements OnInit {
 
   department_id: number;
   token:string='';
-  route: any;
+  router: any;
   name;
   surname;
   pesel;
@@ -36,8 +36,9 @@ export class PatientAddComponent implements OnInit {
   height: number;
   http: HttpClient;
 
-  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute) {
+  constructor(http: HttpClient, @Inject('BASE_URL') baseUrl: string, route: ActivatedRoute, router:Router) {
     this.http = http;
+    this.router=router;
       this.department_id = route.snapshot.params['department_id'];
       console.log(this.department_id)
   }
@@ -48,8 +49,14 @@ export class PatientAddComponent implements OnInit {
     headers: new HttpHeaders({'Content-Type': 'application/json'})
   }
     this.http.post<any>('api/Patients/CreatePatient', body, httpOptions).subscribe(
-      (res) => console.log(res),
-        (err) => console.log(err)
+      (err) => {
+        console.log(err)
+      },
+        (res) => {
+          console.log(res);
+        alert('Dodawanie pacjenta przebiegło pomyślnie. Przejdź do listy pacjentów na oddziale');
+        this.router.navigate(['/patients',  this.department_id]);
+        }
       );
   }
 
