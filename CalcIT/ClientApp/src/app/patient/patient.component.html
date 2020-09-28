@@ -1,15 +1,15 @@
-<a [routerLink]="['/patients',Patients.department_id]">
+<a [routerLink]="['/patients',Patient.department_id]">
         <input type="submit" value="Powrót" class="btn btn-outline-primary" />
 </a>
 
 <div class="card card-login mx-auto mt-5" style="width: 75vw;">
         <div class="card-body">
-                <h1>{{Patients.name}} {{Patients.surname}}</h1>
-                <div> Pesel: {{Patients.pesel}} </div>
+                <h1>{{Patient.name}} {{Patient.surname}}</h1>
+                <div> Pesel: {{Patient.pesel}} </div>
 
-                <a class="nav-link text-dark" [routerLink]="['/results/', Patients.patient_id]">
+                <a class="nav-link text-dark" [routerLink]="['/results/', Patient.patient_id]">
                         <input type="submit" value="Badania" class="btn btn-outline-primary" /></a>
 
-                <input type="submit" value="Wypisz" class="btn btn-outline-primary" />
+                <input type="submit" (click)="deletePatient()" value="Wypisz" class="btn btn-outline-primary" />
         </div>
 </div>
